@@ -6,18 +6,36 @@ app.use(cors());
 
 // function to generate 6 digit random code
 function generateRandomCode() {
-  return Math.floor(100000 + Math.random() * 900000).toString();
+  let code = Math.floor(100000 + Math.random() * 900000).toString();
+  console.log(`Generated code: ${code}`);
+  return code;
 }
 
-let generatedCode = generateRandomCode();
+let generatedCode = "000000";
 let lastUpdated = Date.now();
 
-setInterval(() => {
-  generatedCode = generateRandomCode();
-  lastUpdated = Date.now();
-}, 15000);
+let generating = false;
+let intervalId;
 
-app.get("/", (req, res) => {
+app.post("/code", (req, res) => {
+  if (generating) {
+    clearInterval(intervalId);
+    console.log("Stopped code generation");
+    generating = false;
+  } else {
+    generatedCode = generateRandomCode();
+    lastUpdated = Date.now();
+
+    intervalId = setInterval(() => {
+      generatedCode = generateRandomCode();
+      lastUpdated = Date.now();
+    }, 15000);
+    generating = true;
+  }
+  res.sendStatus(200);
+});
+
+app.get("/code", (req, res) => {
   res.json({
     code: generatedCode,
     lastUpdated: lastUpdated,
