@@ -20,20 +20,15 @@ const classSchema = mongoose.Schema(
     attendance: [
       {
         date: {
-          type: Date,
+          type: String,
           required: true,
         },
-        students: [
+        presentStudents: [
           {
             _id: false,
             studentID: {
               type: String,
               required: true,
-            },
-            status: {
-              type: Boolean,
-              required: true,
-              default: false,
             },
           },
         ],

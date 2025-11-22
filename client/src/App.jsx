@@ -9,6 +9,7 @@ import Classes from "./pages/faculty/Classes.jsx";
 import Dates from "./pages/faculty/Dates.jsx";
 import Day from "./pages/faculty/Day.jsx";
 import TakeAttendance from "./pages/faculty/TakeAttendance.jsx";
+import MarkAttendance from "./pages/student/MarkAttendance.jsx";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path="/faculty/get-dates" element={<Dates />} />
         <Route path="/faculty/get-day" element={<Day />} />
         <Route path="/faculty/take-attendance" element={<TakeAttendance />} />
+        <Route path="/student/mark-attendance" element={<MarkAttendance />} />
       </Routes>
     </>
   );

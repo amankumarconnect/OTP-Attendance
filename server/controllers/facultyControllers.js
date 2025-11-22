@@ -46,7 +46,7 @@ export const getDay = async (req, res) => {
     if (!classData) {
       return res.status(404).json({ message: "Class not found" });
     }
-    const attendanceForDate = classData.attendance.find(entry => entry.date.getTime() === new Date(date).getTime());
+    const attendanceForDate = classData.attendance.find(entry => entry.date === date);
     if (!attendanceForDate) {
       return res.status(404).json({ message: "Attendance for the specified date not found" });
     }

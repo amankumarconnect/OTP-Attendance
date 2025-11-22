@@ -44,3 +44,6 @@ code generated in backend, saved to database
 
 code get by api call to database
 code get by api call to database
+
+<!-- Bugs -->
+1. After stop generating, one can still match the code with last generated code - Code is not set to null after stopping
