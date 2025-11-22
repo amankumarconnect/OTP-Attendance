@@ -22,3 +22,36 @@ export const getClasses = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 }
+
+// Controller for a GET request to get dates for a specific class using classID
+export const getDates = async (req, res) => {
+  try {
+    const { classID } = req.params;
+    const classData = await Class.findById(classID);
+    if (!classData) {
+      return res.status(404).json({ message: "Class not found" });
+    }
+    const dates = classData.attendance.map(entry => entry.date);
+    res.status(200).json(dates);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+} 
+
+// Controller for a GET request to get attendance for a specific class on a specific date
+export const getDay = async (req, res) => {
+  try {
+    const { classID, date } = req.params;
+    const classData = await Class.findById(classID);
+    if (!classData) {
+      return res.status(404).json({ message: "Class not found" });
+    }
+    const attendanceForDate = classData.attendance.find(entry => entry.date.getTime() === new Date(date).getTime());
+    if (!attendanceForDate) {
+      return res.status(404).json({ message: "Attendance for the specified date not found" });
+    }
+    res.status(200).json(attendanceForDate);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
