@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 import connectDB from "./config/db.js";
 import 'dotenv/config'
-import classRoutes from "./routes/classRoutes.js";
+import facultyRoutes from "./routes/facultyRoutes.js";
 
 const app = express();
 app.use(cors());
@@ -11,8 +11,8 @@ app.use(express.json());
 // Connect to the database
 connectDB();
 
-// use routes from classRoutes.js
-app.use("/api", classRoutes);
+// use routes from facultyRoutes.js
+app.use("/api", facultyRoutes);
 
 // function to generate 6 digit random code
 function generateRandomCode() {
