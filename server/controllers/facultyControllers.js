@@ -55,3 +55,19 @@ export const getDay = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 }
+
+// Controller to update Code for a specific class
+export const updateCode = async (req, res) => {
+  try {
+    const { classID } = req.params;
+    const { code } = req.body;
+    const classData = await Class.findByIdAndUpdate(classID, { code }, { new: true });
+    console.log(code);
+    if (!classData) {
+      return res.status(404).json({ message: "Class not found" });
+    }
+    res.status(200).json(classData);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}

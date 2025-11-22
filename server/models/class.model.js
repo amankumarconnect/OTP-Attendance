@@ -39,6 +39,10 @@ const classSchema = mongoose.Schema(
         ],
       },
     ],
+    code: {
+      type: String,
+      required: false,
+    },
   },
   {
     timestamps: true,

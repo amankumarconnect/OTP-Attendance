@@ -36,3 +36,11 @@ faculty page 5 - today page shows buttons to start/stop generating attendance
 student page 1 - classes (input studentId to show)
 student page 2 - date with present/absent status
 student page 3 - today page shows option to input otp to mark attendance
+
+
+Two choices
+code generated in frontend and updated in database via api call
+code generated in backend, saved to database
+
+code get by api call to database
+code get by api call to database
