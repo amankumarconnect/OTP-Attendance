@@ -1,39 +1,45 @@
+// faculty/class/:id
+
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams, Link } from "react-router";
 
 const Dates = () => {
   const navigate = useNavigate();
+  // instead of input, take classID from params
+  const { classID: classID } = useParams();
+  const [dates, setDates] = useState([]);
+
   useEffect(() => {
     const userRole = localStorage.getItem("userRole");
     if (userRole !== "faculty") {
-      navigate("/student/get-classes");
+      navigate("/student");
     }
-  }, [navigate]);
 
-  const [inputValue, setInputValue] = useState("");
-  const [dates, setDates] = useState([]);
-
-  const searchDates = async () => {
-    // Implement search functionality here
-    // send a GET request to api/faculty/get-dates with classID
-    const response = await fetch(`/api/faculty/get-dates/${inputValue}`);
-    const data = await response.json();
-    setDates(JSON.stringify(data));
-  };
+    const searchDates = async () => {
+      const response = await fetch(`/api/faculty/class/${classID}`);
+      const data = await response.json();
+      setDates(data);
+    };
+    if (classID) {
+      searchDates();
+    }
+  }, [navigate, classID]);
 
   return (
     <div>
-      <h1>Dates</h1>
       <div>
-        <input
-          type="text"
-          placeholder="Enter classID"
-          value={inputValue}
-          onChange={(e) => setInputValue(e.target.value)}
-        />
-        <button onClick={searchDates}>Search</button>
+        <h1>Dates</h1>
+        <ul>
+          {dates.map((date) => (
+            <li key={date}>
+              <Link to={`/faculty/class/${classID}/${date}`}>{date}</Link>
+            </li>
+          ))}
+        </ul>
       </div>
-      <div>{dates}</div>
+      <Link to={`/faculty/attendance/${classID}`}>
+        <button>Take Attendance</button>
+      </Link>
     </div>
   );
 };

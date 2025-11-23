@@ -1,5 +1,7 @@
+// faculty
+
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router";
 
 const Classes = () => {
   const navigate = useNavigate();
@@ -10,18 +12,16 @@ const Classes = () => {
     // 1. Check Role
     const userRole = localStorage.getItem("userRole");
     if (userRole !== "faculty") {
-      navigate("/student/get-classes");
+      navigate("/student");
       return; // Stop execution if redirecting
     }
 
     // 2. Define Async Fetch Function
     const fetchClasses = async () => {
       try {
-        const response = await fetch(
-          `/api/faculty/get-classes/${facultyID}`
-        );
+        const response = await fetch(`/api/faculty/get-classes/${facultyID}`);
         const data = await response.json();
-        setClasses(JSON.stringify(data));
+        setClasses(data);
       } catch (error) {
         console.error("Error fetching classes:", error);
       }
@@ -36,7 +36,13 @@ const Classes = () => {
   return (
     <div>
       <h1>Classes</h1>
-      <div>{classes}</div>
+      <ul>
+        {classes.map((id) => (
+          <li key={id}>
+            <Link to={`/faculty/class/${id}`}>{id}</Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

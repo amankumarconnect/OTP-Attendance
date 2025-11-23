@@ -1,26 +1,24 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 const TakeAttendance = () => {
   const navigate = useNavigate();
+  const [code, setCode] = useState(null);
+  const [timeLeft, setTimeLeft] = useState(null);
+  const [codeStatus, setCodeStatus] = useState("");
+  const { classID } = useParams();
+  const [isGenerating, setIsGenerating] = useState(false);
+
   useEffect(() => {
     const userRole = localStorage.getItem("userRole");
     if (userRole !== "faculty") {
-      navigate("/student/get-classes");
+      navigate("/student");
     }
   }, [navigate]);
 
-  const [code, setCode] = useState(null);
-  const [timeLeft, setTimeLeft] = useState(null);
-  const [classID, setClassID] = useState("");
-  const [codeStatus, setCodeStatus] = useState("");
-
-  // function to generate 4 digit random code
-  const generateCode = async () => {
-    const newCode = Math.floor(1000 + Math.random() * 9000);
+  const updateCode = async (newCode) => {
     setCode(newCode);
 
-    // send put request to server with the generated code
     const response = await fetch(`/api/faculty/update-code/${classID}`, {
       method: "PUT",
       headers: {
@@ -35,29 +33,39 @@ const TakeAttendance = () => {
     }
   };
 
-  const countdown = () => {
-    setTimeLeft((prev) => {
-      if (prev <= 1) {
-        return 15;
-      }
-      return prev - 1;
-    });
-  };
+  // The Master Effect
+  useEffect(() => {
+    let generateInterval;
+    let timerInterval;
 
-  let generateInterval;
-  let timerInterval;
+    if (isGenerating) {
 
-  const startGenerating = () => {
-    generateCode();
-    setTimeLeft(15);
+      updateCode(Math.floor(1000 + Math.random() * 9000));
+      setTimeLeft(15);
 
-    generateInterval = setInterval(generateCode, 15000);
-    timerInterval = setInterval(countdown, 1000);
-  };
+
+      generateInterval = setInterval(
+        () => updateCode(Math.floor(1000 + Math.random() * 9000)),
+        15000
+      );
+      timerInterval = setInterval(() => {
+        setTimeLeft((prev) => (prev <= 1 ? 15 : prev - 1));
+      }, 1000);
+    }
+
+    // CLEANUP FUNCTION (Runs on stop OR if user leaves page)
+    return () => {
+      clearInterval(generateInterval);
+      clearInterval(timerInterval);
+      updateCode(null);
+    };
+  }, [isGenerating]);
+
+  // Simple Handlers
+  const startGenerating = () => setIsGenerating(true);
 
   const stopGenerating = () => {
-    clearInterval(generateInterval);
-    clearInterval(timerInterval);
+    setIsGenerating(false);
     setCode(null);
     setTimeLeft(0);
   };
@@ -65,13 +73,6 @@ const TakeAttendance = () => {
   return (
     <div>
       <h1>Take Attendance</h1>
-      <input
-        type="text"
-        id="classID"
-        placeholder="Enter ClassID"
-        value={classID}
-        onChange={(e) => setClassID(e.target.value)}
-      />
       <button onClick={startGenerating}>Start Generating</button>
       <button onClick={stopGenerating}>Stop Generating</button>
       <p>Code: {code}</p>

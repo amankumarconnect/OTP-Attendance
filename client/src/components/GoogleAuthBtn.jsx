@@ -17,9 +17,9 @@ const GoogleAuthBtn = () => {
       localStorage.setItem('userID', userID);
 
       if (role === 'student') {
-        navigate('/student/get-classes');
+        navigate('/student');
       } else {
-        navigate('/faculty/get-classes');
+        navigate('/faculty');
       }
 
     },

@@ -10,7 +10,7 @@ const Classes = () => {
     // 1. Check Role
     const userRole = localStorage.getItem("userRole");
     if (userRole !== "student") {
-      navigate("/faculty/get-classes");
+      navigate("/faculty");
       return; // Stop execution if redirecting
     }
 

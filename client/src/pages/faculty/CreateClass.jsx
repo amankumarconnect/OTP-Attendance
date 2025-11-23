@@ -8,7 +8,7 @@ const CreateClass = () => {
   useEffect(() => {
     const userRole = localStorage.getItem("userRole");
     if (userRole !== "faculty") {
-      navigate("/student/get-classes");
+      navigate("/student");
     }
   }, [navigate]);
 

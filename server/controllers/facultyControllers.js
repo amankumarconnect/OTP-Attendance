@@ -17,7 +17,10 @@ export const getClasses = async (req, res) => {
   try {
     const { facultyID } = req.params;
     const classes = await Class.find({ facultyID });
-    res.status(200).json(classes);
+
+    // send _ids of classes only
+    const classIDs = classes.map(cls => cls._id);
+    res.status(200).json(classIDs);
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

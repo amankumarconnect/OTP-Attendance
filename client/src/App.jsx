@@ -20,12 +20,12 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/faculty/create-class" element={<CreateClass />} />
-        <Route path="/faculty/get-classes" element={<FacultyClasses />} />
-        <Route path="/faculty/get-dates" element={<FacultyDates />} />
-        <Route path="/faculty/get-day" element={<Day />} />
-        <Route path="/faculty/take-attendance" element={<TakeAttendance />} />
-        <Route path="/student/get-classes" element={<StudentClasses />} />
-        <Route path="/student/get-dates" element={<StudentDates />} />
+        <Route path="/faculty" element={<FacultyClasses />} />
+        <Route path="/faculty/class/:classID" element={<FacultyDates />} />
+        <Route path="/faculty/class/:classID/:date" element={<Day />} />
+        <Route path="/faculty/attendance/:classID" element={<TakeAttendance />} />
+        <Route path="/student" element={<StudentClasses />} />
+        <Route path="/student/class/:classID" element={<StudentDates />} />
         <Route path="/student/mark-attendance" element={<MarkAttendance />} />
       </Routes>
     </>

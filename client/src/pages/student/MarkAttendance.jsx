@@ -6,7 +6,7 @@ const MarkAttendance = () => {
   useEffect(() => {
     const userRole = localStorage.getItem("userRole");
     if (userRole !== "student") {
-      navigate("/faculty/get-classes");
+      navigate("/faculty");
     }
   }, [navigate]);
 
