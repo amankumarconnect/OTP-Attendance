@@ -88,3 +88,32 @@ export const updateCode = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// Controller to change attendance status of a student for a specific date
+export const changeStatus = async (req, res) => {
+  try {
+    const { classID, date, studentID } = req.params;
+    const classData = await Class.findById(classID);
+    if (!classData) {
+      return res.status(404).json({ message: "Class not found" });
+    }
+    // find attendance entry for the requested date
+    let attendanceEntry = classData.attendance.find(
+      (entry) => entry.date === date
+    );
+
+    // toggle student's attendance status
+    const index = attendanceEntry.presentStudents.indexOf(studentID);
+    if (index === -1) {
+      attendanceEntry.presentStudents.push(studentID);
+    } else {
+      attendanceEntry.presentStudents.splice(index, 1);
+    }
+
+    await classData.save();
+
+    res.status(200).json({ message: "Status updated successfully" });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};

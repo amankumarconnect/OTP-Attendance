@@ -6,19 +6,28 @@ const Day = () => {
   const { classID, date } = useParams();
   const [day, setDay] = useState([]);
 
+  const searchDay = async () => {
+    const response = await fetch(`/api/faculty/get-day/${classID}/${date}`);
+    const data = await response.json();
+    setDay(data);
+  };
+
   useEffect(() => {
     const userRole = localStorage.getItem("userRole");
     if (userRole !== "faculty") {
       navigate("/student");
     }
 
-    const searchDay = async () => {
-      const response = await fetch(`/api/faculty/get-day/${classID}/${date}`);
-      const data = await response.json();
-      setDay(data);
-    };
     searchDay();
   }, [navigate, classID, date]);
+
+  const changeStatus = async (studentID) => {
+    const response = await fetch(
+      `/api/faculty/change-status/${classID}/${date}/${studentID}`,
+      { method: "PUT" }
+    );
+    searchDay();
+  };
 
   return (
     <div>
@@ -34,7 +43,11 @@ const Day = () => {
           {day.map(({ studentID, status }) => (
             <tr key={studentID}>
               <td>{studentID}</td>
-              <td>{status}</td>
+              <td>
+                <button onClick={() => changeStatus(studentID)}>
+                  {status}
+                </button>
+              </td>
             </tr>
           ))}
         </tbody>
