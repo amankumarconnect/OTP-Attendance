@@ -5,11 +5,12 @@ import viteLogo from "/vite.svg";
 import { Routes, Route } from "react-router";
 import Login from "./pages/Login.jsx";
 import CreateClass from "./pages/faculty/CreateClass.jsx";
-import Classes from "./pages/faculty/Classes.jsx";
-import Dates from "./pages/faculty/Dates.jsx";
+import FacultyClasses from "./pages/faculty/FacultyClasses.jsx";
+import FacultyDates from "./pages/faculty/FacultyDates.jsx";
 import Day from "./pages/faculty/Day.jsx";
 import TakeAttendance from "./pages/faculty/TakeAttendance.jsx";
 import MarkAttendance from "./pages/student/MarkAttendance.jsx";
+import StudentClasses from "./pages/student/StudentClasses.jsx";
 
 
 function App() {
@@ -18,10 +19,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/faculty/create-class" element={<CreateClass />} />
-        <Route path="/faculty/get-classes" element={<Classes />} />
-        <Route path="/faculty/get-dates" element={<Dates />} />
+        <Route path="/faculty/get-classes" element={<FacultyClasses />} />
+        <Route path="/faculty/get-dates" element={<FacultyDates />} />
         <Route path="/faculty/get-day" element={<Day />} />
         <Route path="/faculty/take-attendance" element={<TakeAttendance />} />
+        <Route path="/student/get-classes" element={<StudentClasses />} />
         <Route path="/student/mark-attendance" element={<MarkAttendance />} />
       </Routes>
     </>

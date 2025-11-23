@@ -24,11 +24,9 @@ export const updateAttendance = async (req, res) => {
       attendanceForDate = classData.attendance[classData.attendance.length - 1];
     }
 
-    let studentPresent = attendanceForDate.presentStudents.find(
-      (p) => p.studentID === studentID
-    );
+    let studentPresent = attendanceForDate.presentStudents.find(studentID);
     if (!studentPresent) {
-      attendanceForDate.presentStudents.push({ studentID });
+      attendanceForDate.presentStudents.push(studentID);
     }
 
     await classData.save();
@@ -38,45 +36,13 @@ export const updateAttendance = async (req, res) => {
   }
 };
 
-// Attendance model schema reference
-// const classSchema = mongoose.Schema(
-//   {
-//     facultyID: {
-//       type: String,
-//       required: true,
-//     },
-//     students: [
-//       {
-//         _id: false,
-//         studentID: {
-//           type: String,
-//           required: true,
-//         },
-//       },
-//     ],
-//     attendance: [
-//       {
-//         date: {
-//           type: String,
-//           required: true,
-//         },
-//         presentStudents: [
-//           {
-//             _id: false,
-//             studentID: {
-//               type: String,
-//               required: true,
-//             },
-//           },
-//         ],
-//       },
-//     ],
-//     code: {
-//       type: String,
-//       required: false,
-//     },
-//   },
-//   {
-//     timestamps: true,
-//   }
-// );
+// Controller to get classes for a specific studentID
+export const getClassses = async (req, res) => {
+  try {
+    const { studentID } = req.params;
+    const classes = await Class.find({ students: studentID });
+    res.status(200).json(classes);
+  } catch (error) {
+    res.status(500).json({ message: "Server error", error: error.message });
+  }
+};

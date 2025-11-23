@@ -10,11 +10,8 @@ const classSchema = mongoose.Schema(
     },
     students: [
       {
-        _id: false,
-        studentID: {
-          type: String,
-          required: true,
-        },
+        type: String,
+        required: true,
       },
     ],
     attendance: [
@@ -25,11 +22,8 @@ const classSchema = mongoose.Schema(
         },
         presentStudents: [
           {
-            _id: false,
-            studentID: {
-              type: String,
-              required: true,
-            },
+            type: String,
+            required: true,
           },
         ],
       },
