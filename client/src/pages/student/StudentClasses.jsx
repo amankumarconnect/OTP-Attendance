@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router";
 
 const Classes = () => {
   const navigate = useNavigate();
@@ -21,7 +21,7 @@ const Classes = () => {
           `/api/student/get-classes/${studentID}`
         );
         const data = await response.json();
-        setClasses(JSON.stringify(data));
+        setClasses(data);
       } catch (error) {
         console.error("Error fetching classes:", error);
       }
@@ -36,7 +36,13 @@ const Classes = () => {
   return (
     <div>
       <h1>Classes</h1>
-      <div>{classes}</div>
+      <ul>
+        {classes.map((id) => (
+          <li key={id}>
+            <Link to={`/student/class/${id}`}>{id}</Link>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 };

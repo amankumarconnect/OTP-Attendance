@@ -41,7 +41,8 @@ export const getClassses = async (req, res) => {
   try {
     const { studentID } = req.params;
     const classes = await Class.find({ students: studentID });
-    res.status(200).json(classes);
+    const classIDs = classes.map((cls) => cls._id);
+    res.status(200).json(classIDs);
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
   }

@@ -26,7 +26,7 @@ function App() {
         <Route path="/faculty/attendance/:classID" element={<TakeAttendance />} />
         <Route path="/student" element={<StudentClasses />} />
         <Route path="/student/class/:classID" element={<StudentDates />} />
-        <Route path="/student/mark-attendance" element={<MarkAttendance />} />
+        <Route path="/student/attendance/:classID" element={<MarkAttendance />} />
       </Routes>
     </>
   );
