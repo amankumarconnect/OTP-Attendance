@@ -15,7 +15,7 @@ const Day = () => {
     const searchDay = async () => {
       const response = await fetch(`/api/faculty/get-day/${classID}/${date}`);
       const data = await response.json();
-      setDay(JSON.stringify(data));
+      setDay(data);
     };
     searchDay();
   }, [navigate, classID, date]);
@@ -23,7 +23,22 @@ const Day = () => {
   return (
     <div>
       <h1>Day</h1>
-      <div>{day}</div>
+      <table>
+        <thead>
+          <tr>
+            <th>Student ID</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          {day.map(({ studentID, status }) => (
+            <tr key={studentID}>
+              <td>{studentID}</td>
+              <td>{status}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
