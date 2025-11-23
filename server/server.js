@@ -4,6 +4,7 @@ import connectDB from "./config/db.js";
 import 'dotenv/config'
 import facultyRoutes from "./routes/facultyRoutes.js";
 import studentRoutes from "./routes/studentRoutes.js";
+import authRoutes from "./routes/authRoutes.js";
 
 const app = express();
 app.use(cors());
@@ -15,6 +16,7 @@ connectDB();
 // use routes for faculty and student
 app.use("/api", facultyRoutes);
 app.use("/api", studentRoutes);
+app.use("/auth", authRoutes);
 
 // function to generate 6 digit random code
 function generateRandomCode() {
@@ -23,37 +25,7 @@ function generateRandomCode() {
   return code;
 }
 
-let generatedCode = "000000";
-let lastUpdated = Date.now();
-
-let generating = false;
-let intervalId;
-
-app.post("/code", (req, res) => {
-  if (generating) {
-    clearInterval(intervalId);
-    console.log("Stopped code generation");
-    generating = false;
-  } else {
-    generatedCode = generateRandomCode();
-    lastUpdated = Date.now();
-
-    intervalId = setInterval(() => {
-      generatedCode = generateRandomCode();
-      lastUpdated = Date.now();
-    }, 15000);
-    generating = true;
-  }
-  res.sendStatus(200);
-});
-
-app.get("/code", (req, res) => {
-  res.json({
-    code: generatedCode,
-    lastUpdated: lastUpdated,
-  });
-});
-
+// Start the server
 app.listen(3000, () => {
   console.log("Server is running on http://localhost:3000");
 });

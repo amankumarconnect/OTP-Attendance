@@ -1,21 +1,13 @@
-import React from 'react'
+import React from "react";
+import GoogleAuthBtn from "../components/GoogleAuthBtn";
 
 const Login = () => {
   return (
     <div>
-        <h1>Login</h1>
-        <form action="/login" method="post">
-            <label htmlFor="">ID</label>
-            <input type="text" name="id" />
-            <label htmlFor="">Role</label>
-            <select name="role">
-                <option value="Faculty">Faculty</option>
-                <option value="Student">Student</option>
-            </select>
-            <button type="submit">Login</button>
-        </form>
+      <h1>Login Page</h1>
+      <GoogleAuthBtn />
     </div>
-  )
-}
+  );
+};
 
-export default Login
+export default Login;
