@@ -1,12 +1,23 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
+
+// if userRole is not faculty, redirect to student classes page
 
 const CreateClass = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const userRole = localStorage.getItem("userRole");
+    if (userRole !== "faculty") {
+      navigate("/student/get-classes");
+    }
+  }, [navigate]);
+
   const [classStatus, setClassStatus] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = e.target;
-    const facultyID = data.facultyID.value;
+    const facultyID = localStorage.getItem("userID");
     const studentIDs = data.studentIDs.value.split(",").map((id) => id.trim());
     const response = await fetch("/api/faculty/create-class", {
       method: "POST",
@@ -26,13 +37,6 @@ const CreateClass = () => {
     <div>
       <h1>Create Class</h1>
       <form onSubmit={handleSubmit}>
-        <label htmlFor="facultyID">Faculty ID:</label>
-        <input
-          type="text"
-          name="facultyID"
-          id="facultyID"
-          placeholder="Enter Faculty ID"
-        />
         <label htmlFor="studentIDs">Student IDs:</label>
         <textarea
           name="studentIDs"

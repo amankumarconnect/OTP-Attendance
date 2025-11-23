@@ -1,28 +1,41 @@
-import React from 'react'
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 
 const Dates = () => {
+  useEffect(() => {
+    const userRole = localStorage.getItem("userRole");
+    if (userRole !== "student") {
+      navigate("/faculty/get-classes");
+    }
+  }, [navigate]);
 
-  const [classInput, setClassInput] = React.useState('');
-  const [studentInput, setStudentInput] = React.useState('');
-  const [dates, setDates] = React.useState([]);
+  const [classInput, setClassInput] = useState("");
+  const [dates, setDates] = useState([]);
+  const studentID = localStorage.getItem("userID");
 
   const searchDates = async () => {
-    const response = await fetch(`/api/student/get-dates/${classInput}/${studentInput}`);
+    const response = await fetch(
+      `/api/student/get-dates/${classInput}/${studentID}`
+    );
     const data = await response.json();
     setDates(JSON.stringify(data));
-  }
+  };
 
   return (
     <div>
-        <h1>Dates</h1>
-        <div>
-          <input type="text" placeholder='Enter classID' value={classInput} onChange={(e) => setClassInput(e.target.value)} />
-          <input type="text" placeholder='Enter studentID' value={studentInput} onChange={(e) => setStudentInput(e.target.value)} />
-          <button onClick={searchDates}>Search</button>
-        </div>
-        <div>{dates}</div>
+      <h1>Dates</h1>
+      <div>
+        <input
+          type="text"
+          placeholder="Enter classID"
+          value={classInput}
+          onChange={(e) => setClassInput(e.target.value)}
+        />
+        <button onClick={searchDates}>Search</button>
+      </div>
+      <div>{dates}</div>
     </div>
-  )
-}
+  );
+};
 
-export default Dates
+export default Dates;

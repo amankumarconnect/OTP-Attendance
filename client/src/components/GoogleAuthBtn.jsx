@@ -1,23 +1,27 @@
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
+import { useNavigate } from "react-router";
 
 const GoogleAuthBtn = () => {
+  const navigate = useNavigate();
+
   const googleLogin = useGoogleLogin({
     flow: "auth-code", // Forces the Code Flow
     onSuccess: async (codeResponse) => {
-      console.log("Access Code Received:", codeResponse);
+      const response = await axios.post("/auth/google", {
+        code: codeResponse.code,
+      });
 
-      // Send auth-code to your backend
-      try {
-        const response = await axios.post("/auth/google", {
-          code: codeResponse.code,
-        });
+      const { role, tokens, userID } = response.data;
+      localStorage.setItem('userRole', role);
+      localStorage.setItem('userID', userID);
 
-        console.log("Tokens from Backend:", response.data);
-        // Save response.data.access_token to your local state or context
-      } catch (error) {
-        console.error("Error exchanging code:", error);
+      if (role === 'student') {
+        navigate('/student/get-classes');
+      } else {
+        navigate('/faculty/get-classes');
       }
+
     },
     onError: (errorResponse) => console.log("Login Failed:", errorResponse),
   });

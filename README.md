@@ -47,6 +47,7 @@ code get by api call to database
 
 <!-- Next steps -->
 1. Add google authentication/authorization
+2. Both teacher and students have different pages. So one should not be able to access other. and once someone logs in, they should be redirected to their home page based on role.
 
 <!-- Bugs -->
 1. After stop generating, one can still match the code with last generated code - Code is not set to null after stopping

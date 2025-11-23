@@ -1,11 +1,19 @@
-import { set } from "mongoose";
-import React from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 
 const TakeAttendance = () => {
-  const [code, setCode] = React.useState(null);
-  const [timeLeft, setTimeLeft] = React.useState(null);
-  const [classID, setClassID] = React.useState("");
-  const [codeStatus, setCodeStatus] = React.useState("");
+  const navigate = useNavigate();
+  useEffect(() => {
+    const userRole = localStorage.getItem("userRole");
+    if (userRole !== "faculty") {
+      navigate("/student/get-classes");
+    }
+  }, [navigate]);
+
+  const [code, setCode] = useState(null);
+  const [timeLeft, setTimeLeft] = useState(null);
+  const [classID, setClassID] = useState("");
+  const [codeStatus, setCodeStatus] = useState("");
 
   // function to generate 4 digit random code
   const generateCode = async () => {

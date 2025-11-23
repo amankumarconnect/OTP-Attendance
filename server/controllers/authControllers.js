@@ -16,9 +16,19 @@ export const exchangeCodeForTokens = async (req, res) => {
     const { tokens } = await oAuth2Client.getToken(code);
     console.log(tokens);
 
+    const ticket = await oAuth2Client.verifyIdToken({
+      idToken: tokens.id_token,
+      audience: process.env.CLIENT_ID,
+    });
+    const { email } = ticket.getPayload();
+    const userID = email.split('@')[0];
+
+    const isStudent = /\d{2}[a-zA-Z]{3}\d{5}/.test(userID);
+    const role = isStudent ? "student" : "faculty";
+
     // Ideally, save the refresh_token to your database associated with the user
     // Send the tokens back to the client
-    res.json(tokens);
+    res.json({ tokens, role, userID });
   } catch (error) {
     console.error("Error exchanging token:", error);
     res.status(500).json({ error: "Internal Server Error" });

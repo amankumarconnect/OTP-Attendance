@@ -1,28 +1,44 @@
-import React from 'react'
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 
 const Classes = () => {
+  const navigate = useNavigate();
+  const [classes, setClasses] = useState([]);
+  const facultyID = localStorage.getItem("userID");
 
-  const [inputValue, setInputValue] = React.useState('');
-  const [classes, setClasses] = React.useState([]);
+  useEffect(() => {
+    // 1. Check Role
+    const userRole = localStorage.getItem("userRole");
+    if (userRole !== "faculty") {
+      navigate("/student/get-classes");
+      return; // Stop execution if redirecting
+    }
 
-  const searchClasses = async () => {
-    // Implement search functionality here
-    // send a GET request to api/faculty/get-classes with facultyID
-    const response = await fetch(`/api/faculty/get-classes/${inputValue}`);
-    const data = await response.json();
-    setClasses(JSON.stringify(data));
-  }
+    // 2. Define Async Fetch Function
+    const fetchClasses = async () => {
+      try {
+        const response = await fetch(
+          `/api/faculty/get-classes/${facultyID}`
+        );
+        const data = await response.json();
+        setClasses(JSON.stringify(data));
+      } catch (error) {
+        console.error("Error fetching classes:", error);
+      }
+    };
+
+    // 4. Call the function
+    if (facultyID) {
+      fetchClasses();
+    }
+  }, [navigate, facultyID]); // Dependencies
 
   return (
     <div>
-        <h1>Classes</h1>
-        <div>
-          <input type="text" placeholder='Enter facultyID' value={inputValue} onChange={(e) => setInputValue(e.target.value)} />
-          <button onClick={searchClasses}>Search</button>
-        </div>
-        <div>{classes}</div>
+      <h1>Classes</h1>
+      <div>{classes}</div>
     </div>
-  )
-}
+  );
+};
 
-export default Classes
+export default Classes;

@@ -1,11 +1,20 @@
-import React from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router";
 
 const MarkAttendance = () => {
-  const [attendanceStatus, setAttendanceStatus] = React.useState("");
-  const [inputCode, setInputCode] = React.useState("");
-  const [studentID, setStudentID] = React.useState("");
-  const [classID, setClassID] = React.useState("");
-  const [date, setDate] = React.useState("");
+  const navigate = useNavigate();
+  useEffect(() => {
+    const userRole = localStorage.getItem("userRole");
+    if (userRole !== "student") {
+      navigate("/faculty/get-classes");
+    }
+  }, [navigate]);
+
+  const [attendanceStatus, setAttendanceStatus] = useState("");
+  const [inputCode, setInputCode] = useState("");
+  const [classID, setClassID] = useState("");
+  const [date, setDate] = useState("");
+  const studentID = localStorage.getItem('userID');
 
   const updateAttendance = async () => {
     try {
@@ -33,12 +42,6 @@ const MarkAttendance = () => {
   return (
     <div>
       <div>
-        <input
-          type="text"
-          placeholder="Enter studentID"
-          value={studentID}
-          onChange={(e) => setStudentID(e.target.value)}
-        />
         <input
           type="text"
           placeholder="Enter classID"

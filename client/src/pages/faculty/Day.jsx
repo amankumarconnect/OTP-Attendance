@@ -1,10 +1,19 @@
-import React from 'react'
+import {useState, useEffect} from 'react'
+import { useNavigate } from "react-router";
+
 
 const Day = () => {
+  const navigate = useNavigate();
+  useEffect(() => {
+    const userRole = localStorage.getItem("userRole");
+    if (userRole !== "faculty") {
+      navigate("/student/get-classes");
+    }
+  }, [navigate]);
 
-  const [classValue, setClassValue] = React.useState('');
-  const [dateValue, setDateValue] = React.useState('');
-  const [day, setDay] = React.useState([]);
+  const [classValue, setClassValue] = useState('');
+  const [dateValue, setDateValue] = useState('');
+  const [day, setDay] = useState([]);
 
   const searchDay = async () => {
     // Implement search functionality here
