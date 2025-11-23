@@ -1,5 +1,5 @@
 <!-- Next steps -->
-1. Student pages setup
+1. Test Student pages setup (mark attendance)
 1. Add Proper google authentication/authorization
 2. Logout
 3. Export attendance as csv to email

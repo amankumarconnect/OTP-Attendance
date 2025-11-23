@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate, useParams } from "react-router";
 
 const MarkAttendance = () => {
   const navigate = useNavigate();
@@ -12,8 +12,8 @@ const MarkAttendance = () => {
 
   const [attendanceStatus, setAttendanceStatus] = useState("");
   const [inputCode, setInputCode] = useState("");
-  const [classID, setClassID] = useState("");
-  const [date, setDate] = useState("");
+  const { classID } = useParams();
+  const date = new Date().toISOString().split('T')[0];
   const studentID = localStorage.getItem('userID');
 
   const updateAttendance = async () => {
@@ -42,18 +42,6 @@ const MarkAttendance = () => {
   return (
     <div>
       <div>
-        <input
-          type="text"
-          placeholder="Enter classID"
-          value={classID}
-          onChange={(e) => setClassID(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Enter Date"
-          value={date}
-          onChange={(e) => setDate(e.target.value)}
-        />
         <input
           type="text"
           placeholder="Enter Code"
