@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router";
 const TakeAttendance = () => {
   const navigate = useNavigate();
   const [code, setCode] = useState(null);
-  const [timeLeft, setTimeLeft] = useState(null);
+  const [timeLeft, setTimeLeft] = useState(0);
   const [codeStatus, setCodeStatus] = useState("");
   const { classID } = useParams();
   const [isGenerating, setIsGenerating] = useState(false);
@@ -39,10 +39,8 @@ const TakeAttendance = () => {
     let timerInterval;
 
     if (isGenerating) {
-
       updateCode(Math.floor(1000 + Math.random() * 9000));
       setTimeLeft(15);
-
 
       generateInterval = setInterval(
         () => updateCode(Math.floor(1000 + Math.random() * 9000)),
@@ -57,7 +55,9 @@ const TakeAttendance = () => {
     return () => {
       clearInterval(generateInterval);
       clearInterval(timerInterval);
-      updateCode(null);
+      if (isGenerating) {
+        updateCode(null);
+      }
     };
   }, [isGenerating]);
 
@@ -68,16 +68,38 @@ const TakeAttendance = () => {
     setIsGenerating(false);
     setCode(null);
     setTimeLeft(0);
+    setCodeStatus("Code generation stopped.");
   };
 
   return (
-    <div>
-      <h1>Take Attendance</h1>
-      <button onClick={startGenerating}>Start Generating</button>
-      <button onClick={stopGenerating}>Stop Generating</button>
-      <p>Code: {code}</p>
-      <p>Expiring in: {timeLeft} seconds</p>
-      <p>{codeStatus}</p>
+    <div className="m-8 flex flex-col gap-6 items-center">
+      <div className="flex flex-col items-center">
+        {isGenerating ? (
+          <p className="text-[35vmin] font-medium">{code}</p>
+        ) : (
+          <p className="text-[35vmin] text-gray-500">XXXX</p>
+        )}
+        <div className="divider">Code</div>
+        <p className={!isGenerating ? "invisible" : "text-3xl"}>
+          Expiring in: {timeLeft} seconds
+        </p>
+      </div>
+      {isGenerating ? (
+        <button
+          className="btn btn-outline btn-error btn-xl"
+          onClick={stopGenerating}
+        >
+          Stop Generating
+        </button>
+      ) : (
+        <button
+          className="btn btn-outline btn-success btn-xl"
+          onClick={startGenerating}
+        >
+          Start Generating
+        </button>
+      )}
+      {/* <p>{codeStatus}</p> */}
     </div>
   );
 };

@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 
-// if userRole is not faculty, redirect to student classes page
-
 const CreateClass = () => {
+  const [inputStudentIDs, setInputStudentIDs] = useState("");
+  const [status, setStatus] = useState("");
   const navigate = useNavigate();
   useEffect(() => {
     const userRole = localStorage.getItem("userRole");
@@ -12,13 +12,9 @@ const CreateClass = () => {
     }
   }, [navigate]);
 
-  const [classStatus, setClassStatus] = useState("");
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const data = e.target;
+  const addClass = async () => {
     const facultyID = localStorage.getItem("userID");
-    const studentIDs = data.studentIDs.value.split(",").map((id) => id.trim());
+    const studentIDs = inputStudentIDs.split(",").map((id) => id.trim());
     const response = await fetch("/api/faculty/create-class", {
       method: "POST",
       headers: {
@@ -27,26 +23,65 @@ const CreateClass = () => {
       body: JSON.stringify({ facultyID, studentIDs }),
     });
     if (response.ok) {
-      setClassStatus("Class created successfully!");
+      setStatus("Success");
     } else {
-      setClassStatus("Failed to create class.");
+      setStatus("Error");
     }
   };
 
   return (
-    <div>
-      <h1>Create Class</h1>
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="studentIDs">Student IDs:</label>
+    <div className="m-8">
+      <h1 className="text-4xl font-bold">Create Class</h1>
+      <div className="m-16 flex flex-col gap-4">
         <textarea
           name="studentIDs"
           id="studentIDs"
           placeholder="Enter StudentIDs separated by commas"
           rows="10"
+          className="textarea w-full"
+          value={inputStudentIDs}
+          onChange={(e) => setInputStudentIDs(e.target.value)}
         ></textarea>
-        <button type="submit">Add Class</button>
-      </form>
-      <p>{classStatus}</p>
+        <button className="btn btn-outline btn-primary" onClick={addClass}>
+          Add Class
+        </button>
+      </div>
+      {status === "Success" && (
+        <div role="alert" className="alert alert-success">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 shrink-0 stroke-current"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <span>Your class has been created successfully!</span>
+        </div>
+      )}
+      {status === "Error" && (
+        <div role="alert" className="alert alert-error">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6 shrink-0 stroke-current"
+            fill="none"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+            />
+          </svg>
+          <span>Error creating class.</span>
+        </div>
+      )}
     </div>
   );
 };
