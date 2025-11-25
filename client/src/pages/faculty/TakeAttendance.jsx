@@ -99,7 +99,6 @@ const TakeAttendance = () => {
           Start Generating
         </button>
       )}
-      {/* <p>{codeStatus}</p> */}
     </div>
   );
 };

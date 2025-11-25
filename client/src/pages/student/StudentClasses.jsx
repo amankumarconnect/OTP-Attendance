@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router";
+import ClassCard from "../../components/student/ClassCard";
 
 const Classes = () => {
   const navigate = useNavigate();
@@ -34,15 +35,10 @@ const Classes = () => {
   }, [navigate, studentID]); // Dependencies
 
   return (
-    <div>
-      <h1>Classes</h1>
-      <ul>
-        {classes.map((id) => (
-          <li key={id}>
-            <Link to={`/student/class/${id}`}>{id}</Link>
-          </li>
-        ))}
-      </ul>
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 m-8">
+      {classes.map((classID) => (
+        <ClassCard key={classID} classID={classID} />
+      ))}
     </div>
   );
 };

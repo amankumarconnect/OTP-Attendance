@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router";
+import { useNavigate} from "react-router";
 import ClassCard from "../../components/faculty/ClassCard";
 
 const Classes = () => {

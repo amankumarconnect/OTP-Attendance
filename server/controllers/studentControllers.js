@@ -30,7 +30,7 @@ export const updateAttendance = async (req, res) => {
     }
 
     await classData.save();
-    res.status(200).json({ message: "Attendance updated successfully" });
+    res.status(200).json({ message: "Success" });
   } catch (error) {
     res.status(500).json({ message: "Server error", error: error.message });
   }

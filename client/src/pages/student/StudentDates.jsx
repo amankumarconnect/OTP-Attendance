@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import { useNavigate, useParams, Link } from "react-router";
+import { useEffect } from "react";
+import { useNavigate, useParams } from "react-router";
+import AttendanceTable from "../../components/student/AttendanceTable.jsx";
 
 const Dates = () => {
   const navigate = useNavigate();
   const { classID: classID } = useParams();
-  const [dates, setDates] = useState([]);
   const studentID = localStorage.getItem("userID");
 
   useEffect(() => {
@@ -12,37 +12,11 @@ const Dates = () => {
     if (userRole !== "student") {
       navigate("/faculty");
     }
-    searchDates();
-  }, [navigate, classID, studentID]);
-
-  const searchDates = async () => {
-    const response = await fetch(
-      `/api/student/get-dates/${classID}/${studentID}`
-    );
-    const data = await response.json();
-    setDates(data);
-  };
+  }, [navigate]);
 
   return (
-    <div>
-      <Link to={`/student/attendance/${classID}`}><button>Mark Attendance</button></Link>
-      <h1>Dates</h1>
-      <table>
-        <thead>
-          <tr>
-            <th>Date</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody>
-          {dates.map(({ date, status }) => (
-            <tr key={date}>
-              <td>{date}</td>
-              <td>{status}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+    <div className="m-8">
+      <AttendanceTable classID={classID} studentID={studentID} />
     </div>
   );
 };

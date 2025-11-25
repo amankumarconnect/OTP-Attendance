@@ -1,4 +1,6 @@
 <!-- Next steps -->
+1. delete class
+1. show the status alert
 1. Take Attendance for a particular date
 1. Student IDs - Registration Number model, create-class OR associate Name of students with RegNO
 1. NavBar/sidebar - Faculty (Logo, Classes, new class), Students (Logo, Classes)
@@ -14,4 +16,4 @@
 11. Buy Domain and deploy
 
 <!-- Bugs -->
-1. codeStatus not updating to "Code generation stopped." on stopping the code generation manually
+1. 
