@@ -3,7 +3,9 @@ import { useNavigate } from "react-router";
 
 const CreateClass = () => {
   const [inputStudentIDs, setInputStudentIDs] = useState("");
+  const [classTitle, setClassTitle] = useState("");
   const [status, setStatus] = useState("");
+
   const navigate = useNavigate();
   useEffect(() => {
     const userRole = localStorage.getItem("userRole");
@@ -20,7 +22,7 @@ const CreateClass = () => {
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ facultyID, studentIDs }),
+      body: JSON.stringify({ classTitle, facultyID, studentIDs }),
     });
     if (response.ok) {
       setStatus("Success");
@@ -33,6 +35,14 @@ const CreateClass = () => {
     <div className="m-8">
       <h1 className="text-4xl font-bold">Create Class</h1>
       <div className="m-16 flex flex-col gap-4">
+        <input
+          type="text"
+          placeholder="Class Name"
+          className="input"
+          value={classTitle}
+          onChange={(e) => setClassTitle(e.target.value)}
+          required
+        />
         <textarea
           name="studentIDs"
           id="studentIDs"

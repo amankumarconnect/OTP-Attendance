@@ -4,6 +4,10 @@ import mongoose from "mongoose";
 
 const classSchema = mongoose.Schema(
   {
+    classTitle: {
+      type: String,
+      required: true,
+    },
     facultyID: {
       type: String,
       required: true,

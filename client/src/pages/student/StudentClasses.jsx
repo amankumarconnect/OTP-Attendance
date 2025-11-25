@@ -36,8 +36,8 @@ const Classes = () => {
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 m-8">
-      {classes.map((classID) => (
-        <ClassCard key={classID} classID={classID} />
+      {classes.map((classItem) => (
+        <ClassCard key={classItem._id} classItem={classItem} />
       ))}
     </div>
   );

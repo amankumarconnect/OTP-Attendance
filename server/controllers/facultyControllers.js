@@ -3,11 +3,12 @@ import Class from "../models/class.model.js";
 // Controller to create a new class
 export const createClass = async (req, res) => {
   try {
-    const { facultyID, students } = req.body;
-    const newClass = new Class({ facultyID, students });
+    const { facultyID, classTitle, students } = req.body;
+    const newClass = new Class({ classTitle, facultyID, students });
     await newClass.save();
     res.status(201).json(newClass);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -17,11 +18,9 @@ export const getClasses = async (req, res) => {
   try {
     const { facultyID } = req.params;
     const classes = await Class.find({ facultyID });
-
-    // send _ids of classes only
-    const classIDs = classes.map((cls) => cls._id);
-    res.status(200).json(classIDs);
+    res.status(200).json(classes);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -37,6 +36,7 @@ export const getDates = async (req, res) => {
     const dates = classData.attendance.map((entry) => entry.date);
     res.status(200).json(dates);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -65,6 +65,7 @@ export const getDay = async (req, res) => {
 
     return res.status(200).json(dayStatus);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -85,6 +86,7 @@ export const updateCode = async (req, res) => {
     }
     res.status(200).json(classData);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: error.message });
   }
 };
@@ -114,6 +116,7 @@ export const changeStatus = async (req, res) => {
 
     res.status(200).json({ message: "Status updated successfully" });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: error.message });
   }
 };

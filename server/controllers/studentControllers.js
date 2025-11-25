@@ -32,6 +32,7 @@ export const updateAttendance = async (req, res) => {
     await classData.save();
     res.status(200).json({ message: "Success" });
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
@@ -41,9 +42,9 @@ export const getClassses = async (req, res) => {
   try {
     const { studentID } = req.params;
     const classes = await Class.find({ students: studentID });
-    const classIDs = classes.map((cls) => cls._id);
-    res.status(200).json(classIDs);
+    res.status(200).json(classes);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: "Server error", error: error.message });
   }
 };
@@ -63,6 +64,7 @@ export const getDates = async (req, res) => {
     });
     res.status(200).json(datesStatus);
   } catch (error) {
+    console.error(error);
     res.status(500).json({ message: error.message });
   }
 }

@@ -1,19 +1,32 @@
 <!-- Next steps -->
-1. delete class
-1. show the status alert
-1. Take Attendance for a particular date
 1. Student IDs - Registration Number model, create-class OR associate Name of students with RegNO
-1. NavBar/sidebar - Faculty (Logo, Classes, new class), Students (Logo, Classes)
-2. Logout
-3. Option to copy csv (or send to email)
-9. Responsive UI/UX
+2. ClassIDs names
 
+1. NavBar/sidebar - Faculty (Logo, Home, new class), Students (Logo, Home)
+9. Responsive UI/UX
+1. show the status alert (for errors)
+1. scroll bar in date select
+1. show present/absent count on class page
+
+1. Take Attendance for a particular date
+1. Take Attendance button on a date page that auto select that date for taking attendance
+3. Option to copy present csv, absent csv (or send to email)
+1. delete/hide class
+1. add/remove students from class
+
+2. Logout
 5. Restrict login to @vitbhopal.ac.in emails only
-7. Stay logged in only at one place at a time 
 6. One tap/automatic login for @vitbhopal.ac.in emails
-8. Can not login to another place for 5 days after logging in to one place
+
 10. Optimization
 11. Buy Domain and deploy
 
 <!-- Bugs -->
 1. 
+
+<!-- Challenges -->
+1. Student call their friend (already marked present) who tell the code and they enter the code quickly.
+
+<!-- Possible Solutions -->
+7. Stay logged in only at one place at a time 
+8. Can not login to another place for 5 days after logging in to one place
