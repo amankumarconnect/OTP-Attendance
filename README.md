@@ -1,6 +1,5 @@
 <!-- Next steps -->
 1. Student IDs - Registration Number model, create-class OR associate Name of students with RegNO
-2. ClassIDs names
 
 1. NavBar/sidebar - Faculty (Logo, Home, new class), Students (Logo, Home)
 9. Responsive UI/UX
@@ -13,6 +12,7 @@
 3. Option to copy present csv, absent csv (or send to email)
 1. delete/hide class
 1. add/remove students from class
+1. Show attendance percent and other useful perks
 
 2. Logout
 5. Restrict login to @vitbhopal.ac.in emails only
@@ -21,8 +21,10 @@
 10. Optimization
 11. Buy Domain and deploy
 
+12. Not VIT secific - A general attendance app
+
 <!-- Bugs -->
-1. 
+1. What if a faculty clicks on a link of other faculty's class and take attendance?
 
 <!-- Challenges -->
 1. Student call their friend (already marked present) who tell the code and they enter the code quickly.
@@ -30,3 +32,9 @@
 <!-- Possible Solutions -->
 7. Stay logged in only at one place at a time 
 8. Can not login to another place for 5 days after logging in to one place
+
+<!-- Doubts -->
+1. 
+
+<!-- Up-Next -->
+1. Test the navbars, layout. is the main necessary? how the outlet works?

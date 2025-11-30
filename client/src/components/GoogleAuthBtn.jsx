@@ -15,12 +15,6 @@ const GoogleAuthBtn = () => {
       const { role, tokens, userID } = response.data;
       localStorage.setItem("userRole", role);
       localStorage.setItem("userID", userID);
-
-      if (role === "student") {
-        navigate("/student");
-      } else {
-        navigate("/faculty");
-      }
     },
     onError: (errorResponse) => console.log("Login Failed:", errorResponse),
   });

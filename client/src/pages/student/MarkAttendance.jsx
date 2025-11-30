@@ -7,12 +7,11 @@ const MarkAttendance = () => {
   useEffect(() => {
     const userRole = localStorage.getItem("userRole");
     if (userRole !== "student") {
-      navigate("/faculty");
+      navigate("/");
     }
   }, [navigate]);
 
   const [attendanceStatus, setAttendanceStatus] = useState("");
-  const [inputCode, setInputCode] = useState("");
   const { classID } = useParams();
   const date = new Date().toISOString().split("T")[0];
   const studentID = localStorage.getItem("userID");

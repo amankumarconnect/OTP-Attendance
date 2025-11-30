@@ -42,7 +42,11 @@ export const getClassses = async (req, res) => {
   try {
     const { studentID } = req.params;
     const classes = await Class.find({ students: studentID });
-    res.status(200).json(classes);
+    const simplifiedClasses = classes.map(({ _id, classTitle }) => ({
+      _id,
+      classTitle,
+    }));
+    res.status(200).json(simplifiedClasses);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server error", error: error.message });
@@ -58,7 +62,7 @@ export const getDates = async (req, res) => {
     if (!classData) {
       return res.status(404).json({ message: "Class not found" });
     }
-    const datesStatus = classData.attendance.map(entry => {
+    const datesStatus = classData.attendance.map((entry) => {
       const isPresent = entry.presentStudents.includes(studentID);
       return { date: entry.date, status: isPresent ? "present" : "absent" };
     });
@@ -67,4 +71,4 @@ export const getDates = async (req, res) => {
     console.error(error);
     res.status(500).json({ message: error.message });
   }
-}
+};

@@ -10,7 +10,7 @@ const Dates = () => {
   useEffect(() => {
     const userRole = localStorage.getItem("userRole");
     if (userRole !== "student") {
-      navigate("/faculty");
+      navigate("/");
     }
   }, [navigate]);
 

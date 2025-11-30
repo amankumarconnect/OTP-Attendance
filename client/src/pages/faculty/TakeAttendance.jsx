@@ -12,7 +12,7 @@ const TakeAttendance = () => {
   useEffect(() => {
     const userRole = localStorage.getItem("userRole");
     if (userRole !== "faculty") {
-      navigate("/student");
+      navigate("/");
     }
   }, [navigate]);
 
