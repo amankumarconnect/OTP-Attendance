@@ -1,17 +1,12 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 import AttendanceTable from "../../components/faculty/AttendanceTable.jsx";
 
 const Day = () => {
-  const navigate = useNavigate();
   const { classID, date } = useParams();
   const [classTitle, setClassTitle] = useState("");
 
   useEffect(() => {
-    const userRole = localStorage.getItem("userRole");
-    if (userRole !== "faculty") {
-      navigate("/");
-    }
     // fetch classTitle from /api/get-class-title/${classID}
     const fetchClassTitle = async () => {
       try {
@@ -23,7 +18,7 @@ const Day = () => {
       }
     };
     fetchClassTitle();
-  }, [navigate, classID]);
+  }, [classID]);
 
   return (
     <div className="m-8">

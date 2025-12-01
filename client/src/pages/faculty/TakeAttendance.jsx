@@ -1,20 +1,12 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useParams } from "react-router";
 
 const TakeAttendance = () => {
-  const navigate = useNavigate();
   const [code, setCode] = useState(null);
   const [timeLeft, setTimeLeft] = useState(0);
   const [codeStatus, setCodeStatus] = useState("");
   const { classID } = useParams();
   const [isGenerating, setIsGenerating] = useState(false);
-
-  useEffect(() => {
-    const userRole = localStorage.getItem("userRole");
-    if (userRole !== "faculty") {
-      navigate("/");
-    }
-  }, [navigate]);
 
   const updateCode = async (newCode) => {
     setCode(newCode);

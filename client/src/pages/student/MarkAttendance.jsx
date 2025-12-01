@@ -1,16 +1,8 @@
-import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router";
+import { useState} from "react";
+import { useParams } from "react-router";
 import { OTPInput } from "input-otp";
 
 const MarkAttendance = () => {
-  const navigate = useNavigate();
-  useEffect(() => {
-    const userRole = localStorage.getItem("userRole");
-    if (userRole !== "student") {
-      navigate("/");
-    }
-  }, [navigate]);
-
   const [attendanceStatus, setAttendanceStatus] = useState("");
   const { classID } = useParams();
   const date = new Date().toISOString().split("T")[0];

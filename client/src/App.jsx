@@ -11,9 +11,10 @@ import MarkAttendance from "./pages/student/MarkAttendance.jsx";
 import StudentHome from "./pages/student/StudentHome.jsx";
 import MyAttendance from "./pages/student/MyAttendance.jsx";
 import Layout from "./components/Layout.jsx";
+import { useAuth } from "./context/AuthContext.jsx";
 
 function App() {
-  const userRole = localStorage.getItem("userRole");
+  const { userRole } = useAuth();
   return (
     <>
       <Routes>

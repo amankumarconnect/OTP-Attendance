@@ -1,18 +1,9 @@
-import { useState, useEffect } from "react";
-import { useNavigate } from "react-router";
+import { useState} from "react";
 
 const CreateClass = () => {
   const [inputStudentIDs, setInputStudentIDs] = useState("");
   const [classTitle, setClassTitle] = useState("");
   const [status, setStatus] = useState("");
-
-  const navigate = useNavigate();
-  useEffect(() => {
-    const userRole = localStorage.getItem("userRole");
-    if (userRole !== "faculty") {
-      navigate("/");
-    }
-  }, [navigate]);
 
   const addClass = async () => {
     const facultyID = localStorage.getItem("userID");

@@ -23,6 +23,8 @@
 
 12. Not VIT secific - A general attendance app
 
+11. prettier
+
 <!-- Bugs -->
 1. What if a faculty clicks on a link of other faculty's class and take attendance?
 
@@ -37,4 +39,5 @@
 1. 
 
 <!-- Up-Next -->
-1. Test the navbars, layout. is the main necessary? how the outlet works?
+1. Understand AuthContext.jsx
+2. onChange or onClick in DateSelect.jsx

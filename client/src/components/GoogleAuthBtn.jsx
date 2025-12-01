@@ -1,9 +1,9 @@
 import { useGoogleLogin } from "@react-oauth/google";
 import axios from "axios";
-import { useNavigate } from "react-router";
+import { useAuth } from "../context/AuthContext.jsx";
 
 const GoogleAuthBtn = () => {
-  const navigate = useNavigate();
+  const { login } = useAuth();
 
   const googleLogin = useGoogleLogin({
     flow: "auth-code", // Forces the Code Flow
@@ -12,9 +12,8 @@ const GoogleAuthBtn = () => {
         code: codeResponse.code,
       });
 
-      const { role, tokens, userID } = response.data;
-      localStorage.setItem("userRole", role);
-      localStorage.setItem("userID", userID);
+      const { role, userID } = response.data;
+      login(role, userID);
     },
     onError: (errorResponse) => console.log("Login Failed:", errorResponse),
   });
