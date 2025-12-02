@@ -4,7 +4,7 @@ const AttendanceTable = ({ classID, studentID }) => {
   const [attendance, setAttendance] = useState([]);
   const searchDates = async () => {
     const response = await fetch(
-      `/api/student/get-dates/${classID}/${studentID}`
+      `/api/student/get-dates/${classID}/${studentID}`,
     );
     const data = await response.json();
     setAttendance(data);

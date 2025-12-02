@@ -1,0 +1,14 @@
+# Ignore artifacts:
+build
+coverage
+
+# Ignore dependencies
+node_modules
+
+# Ignore build outputs
+dist
+build
+coverage
+
+# Ignore environment files
+.env

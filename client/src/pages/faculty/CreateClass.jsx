@@ -1,4 +1,5 @@
-import { useState} from "react";
+import { useState } from "react";
+import { useAuth } from "../../context/AuthContext.jsx";
 
 const CreateClass = () => {
   const [inputStudentIDs, setInputStudentIDs] = useState("");
@@ -6,7 +7,8 @@ const CreateClass = () => {
   const [status, setStatus] = useState("");
 
   const addClass = async () => {
-    const facultyID = localStorage.getItem("userID");
+    const { userID: facultyID } = useAuth();
+
     const studentIDs = inputStudentIDs.split(",").map((id) => id.trim());
     const response = await fetch("/api/faculty/create-class", {
       method: "POST",

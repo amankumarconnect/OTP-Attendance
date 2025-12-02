@@ -13,7 +13,7 @@ const AttendanceTable = ({ classID, date }) => {
   const changeStatus = async (studentID) => {
     const response = await fetch(
       `/api/faculty/change-status/${classID}/${date}/${studentID}`,
-      { method: "PUT" }
+      { method: "PUT" },
     );
     searchDay();
   };

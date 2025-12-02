@@ -4,7 +4,7 @@ import { OAuth2Client } from "google-auth-library";
 const oAuth2Client = new OAuth2Client(
   process.env.CLIENT_ID,
   process.env.CLIENT_SECRET,
-  "postmessage" // This is required for the 'auth-code' flow from a React client
+  "postmessage", // This is required for the 'auth-code' flow from a React client
 );
 
 // 1. Route to exchange the code for tokens
@@ -21,7 +21,7 @@ export const exchangeCodeForTokens = async (req, res) => {
       audience: process.env.CLIENT_ID,
     });
     const { email } = ticket.getPayload();
-    const userID = email.split('@')[0];
+    const userID = email.split("@")[0];
 
     const isStudent = /\d{2}[a-zA-Z]{3}\d{5}/.test(userID);
     const role = isStudent ? "student" : "faculty";

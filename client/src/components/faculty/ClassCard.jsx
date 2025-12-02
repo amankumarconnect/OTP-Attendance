@@ -7,7 +7,7 @@ const ClassCard = ({ classID, classTitle }) => {
       <div className="card-body">
         <h2 className="card-title">{classTitle}</h2>
         <div className="card-actions">
-          <AttendanceButton classID={classID}/>
+          <AttendanceButton classID={classID} />
           <DateSelect classID={classID} />
         </div>
       </div>

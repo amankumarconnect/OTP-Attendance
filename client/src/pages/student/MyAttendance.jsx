@@ -1,9 +1,10 @@
 import { useParams } from "react-router";
 import AttendanceTable from "../../components/student/AttendanceTable.jsx";
+import { useAuth } from "../../context/AuthContext.jsx";
 
 const Dates = () => {
   const { classID: classID } = useParams();
-  const studentID = localStorage.getItem("userID");
+  const { userID: studentID } = useAuth();
 
   return (
     <div className="m-8">

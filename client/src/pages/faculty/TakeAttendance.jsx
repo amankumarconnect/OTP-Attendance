@@ -36,7 +36,7 @@ const TakeAttendance = () => {
 
       generateInterval = setInterval(
         () => updateCode(Math.floor(1000 + Math.random() * 9000)),
-        15000
+        15000,
       );
       timerInterval = setInterval(() => {
         setTimeLeft((prev) => (prev <= 1 ? 15 : prev - 1));

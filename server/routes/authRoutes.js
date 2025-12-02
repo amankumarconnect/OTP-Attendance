@@ -1,4 +1,7 @@
-import { exchangeCodeForTokens, refreshTheToken} from "../controllers/authControllers.js";
+import {
+  exchangeCodeForTokens,
+  refreshTheToken,
+} from "../controllers/authControllers.js";
 
 import express from "express";
 const router = express.Router();

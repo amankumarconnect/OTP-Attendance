@@ -1,12 +1,13 @@
-import { useState} from "react";
+import { useState } from "react";
 import { useParams } from "react-router";
 import { OTPInput } from "input-otp";
+import { useAuth } from "../../context/AuthContext.jsx";
 
 const MarkAttendance = () => {
   const [attendanceStatus, setAttendanceStatus] = useState("");
   const { classID } = useParams();
   const date = new Date().toISOString().split("T")[0];
-  const studentID = localStorage.getItem("userID");
+  const { userID: studentID } = useAuth();
 
   const updateAttendance = async (code) => {
     try {

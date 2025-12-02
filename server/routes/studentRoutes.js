@@ -1,4 +1,8 @@
-import { updateAttendance, getClassses, getDates } from "../controllers/studentControllers.js";
+import {
+  updateAttendance,
+  getClassses,
+  getDates,
+} from "../controllers/studentControllers.js";
 
 import express from "express";
 const router = express.Router();

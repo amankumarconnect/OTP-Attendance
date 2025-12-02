@@ -56,10 +56,10 @@ export const getDay = async (req, res) => {
     }
     // find attendance entry for the requested date (exact string match)
     const attendanceEntry = classData.attendance.find(
-      (entry) => entry.date === date
+      (entry) => entry.date === date,
     );
     const presentSet = new Set(
-      attendanceEntry ? attendanceEntry.presentStudents : []
+      attendanceEntry ? attendanceEntry.presentStudents : [],
     );
 
     // map every student to an object with their status for that date
@@ -83,7 +83,7 @@ export const updateCode = async (req, res) => {
     const classData = await Class.findByIdAndUpdate(
       classID,
       { code },
-      { new: true }
+      { new: true },
     );
     console.log(code);
     if (!classData) {
@@ -106,7 +106,7 @@ export const changeStatus = async (req, res) => {
     }
     // find attendance entry for the requested date
     let attendanceEntry = classData.attendance.find(
-      (entry) => entry.date === date
+      (entry) => entry.date === date,
     );
 
     // toggle student's attendance status

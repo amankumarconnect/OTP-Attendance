@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 import ClassCard from "../../components/faculty/ClassCard";
 import { Link } from "react-router";
+import { useAuth } from "../../context/AuthContext.jsx";
 
 const Classes = () => {
   const [classes, setClasses] = useState([]);
-  const facultyID = localStorage.getItem("userID");
+  const { userID: facultyID } = useAuth();
 
   useEffect(() => {
     // 2. Define Async Fetch Function

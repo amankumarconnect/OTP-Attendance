@@ -39,7 +39,7 @@ const classSchema = mongoose.Schema(
   },
   {
     timestamps: true,
-  }
+  },
 );
 
 const Class = mongoose.model("Class", classSchema);

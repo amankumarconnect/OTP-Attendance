@@ -1,4 +1,11 @@
-import { createClass, getClasses, getDates, getDay, updateCode, changeStatus} from "../controllers/facultyControllers.js";
+import {
+  createClass,
+  getClasses,
+  getDates,
+  getDay,
+  updateCode,
+  changeStatus,
+} from "../controllers/facultyControllers.js";
 
 import express from "express";
 const router = express.Router();

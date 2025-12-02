@@ -1,0 +1,16 @@
+{
+  "name": "otp-attendance",
+  "version": "1.0.0",
+  "description": "<!-- Next steps -->\r 1. Student IDs - Registration Number model, create-class OR associate Name of students with RegNO",
+  "main": "index.js",
+  "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "prettier": "3.7.3"
+  }
+}

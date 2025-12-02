@@ -16,7 +16,7 @@ export const updateAttendance = async (req, res) => {
     }
 
     let attendanceForDate = classData.attendance.find(
-      (att) => att.date === date
+      (att) => att.date === date,
     );
     if (!attendanceForDate) {
       classData.attendance.push({ date: date, students: [] });

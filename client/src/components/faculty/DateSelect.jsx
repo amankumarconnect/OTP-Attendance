@@ -19,7 +19,9 @@ const DateSelect = ({ classID }) => {
     <select
       defaultValue="Choose Date"
       className="select select-primary"
-      onChange={(e) => navigate(`/class-attendance/${classID}/${e.target.value}`)}
+      onChange={(e) =>
+        navigate(`/class-attendance/${classID}/${e.target.value}`)
+      }
     >
       <option disabled={true}>Choose Date</option>
       {dates.map((date) => (
