@@ -1,28 +1,27 @@
 <!-- Next steps -->
 
-1. Student IDs - Registration Number model, create-class OR associate Name of students with RegNO
+1. present csv, absent csv (send to email)
+1. Take Attendance for a particular date
+1. Take Attendance button on a date page that auto select that date for taking attendance
+1. delete/hide class
+1. add/remove students from class
 
 1. NavBar/sidebar - Faculty (Logo, Home, new class), Students (Logo, Home)
 1. Responsive UI/UX
 1. show the status alert (for errors)
 1. scroll bar in date select
-1. show present/absent count on class page
-
-1. Take Attendance for a particular date
-1. Take Attendance button on a date page that auto select that date for taking attendance
-1. Option to copy present csv, absent csv (or send to email)
-1. delete/hide class
-1. add/remove students from class
 1. Show attendance percent and other useful perks to students and faculty
 
 1. Logout
 1. Restrict login to @vitbhopal.ac.in emails only
 1. One tap/automatic login for @vitbhopal.ac.in emails
 
-1. Optimization
-1. Buy Domain and deploy
+1. Student IDs - Registration Number model, create-class OR associate Name of students with RegNO
 
 1. Not VIT secific - A general attendance app
+
+1. Optimization
+1. Buy Domain and deploy
 
 <!-- Bugs -->
 
@@ -43,5 +42,4 @@
 
 <!-- Up-Next -->
 
-1. Understand AuthContext.jsx
-2. onChange or onClick in DateSelect.jsx
+1. 

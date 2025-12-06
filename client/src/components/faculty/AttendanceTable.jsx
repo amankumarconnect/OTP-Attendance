@@ -1,23 +1,4 @@
-import { useState, useEffect } from "react";
-
-const AttendanceTable = ({ classID, date }) => {
-  const [attendance, setAttendance] = useState([]);
-  const searchDay = async () => {
-    const response = await fetch(`/api/faculty/get-day/${classID}/${date}`);
-    const data = await response.json();
-    setAttendance(data);
-  };
-  useEffect(() => {
-    searchDay();
-  }, [classID, date]);
-  const changeStatus = async (studentID) => {
-    const response = await fetch(
-      `/api/faculty/change-status/${classID}/${date}/${studentID}`,
-      { method: "PUT" },
-    );
-    searchDay();
-  };
-
+const AttendanceTable = ({ attendance, changeStatus }) => {
   return (
     <div className="overflow-x-auto">
       <table className="table">
