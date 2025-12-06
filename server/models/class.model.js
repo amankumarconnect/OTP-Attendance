@@ -32,6 +32,10 @@ const classSchema = mongoose.Schema(
         ],
       },
     ],
+    attendanceDate: {
+      type: String,
+      required: false,
+    },
     code: {
       type: String,
       required: false,

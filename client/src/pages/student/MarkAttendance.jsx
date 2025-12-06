@@ -6,19 +6,16 @@ import { useAuth } from "../../context/AuthContext.jsx";
 const MarkAttendance = () => {
   const [attendanceStatus, setAttendanceStatus] = useState("");
   const { classID } = useParams();
-  const date = new Date().toISOString().split("T")[0];
   const { userID: studentID } = useAuth();
 
   const updateAttendance = async (code) => {
     try {
-      const response = await fetch("/api/student/update-attendance", {
+      const response = await fetch(`/api/student/update-attendance/${classID}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          classID,
-          date,
           studentID,
           code: code,
         }),

@@ -5,6 +5,7 @@
 1. Take Attendance button on a date page that auto select that date for taking attendance
 1. delete/hide class
 1. add/remove students from class
+1. change faculty date select to a view attendance button and add date picker on view attendance page
 
 1. NavBar/sidebar - Faculty (Logo, Home, new class), Students (Logo, Home)
 1. Responsive UI/UX
@@ -12,7 +13,6 @@
 1. scroll bar in date select
 1. Show attendance percent and other useful perks to students and faculty
 
-1. Logout
 1. Restrict login to @vitbhopal.ac.in emails only
 1. One tap/automatic login for @vitbhopal.ac.in emails
 

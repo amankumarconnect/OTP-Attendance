@@ -29,7 +29,7 @@ function App() {
               element={<ClassAttendance />}
             />
             <Route
-              path="/take-attendance/:classID"
+              path="/take-attendance/:classID/:date"
               element={<TakeAttendance />}
             />
             <Route path="*" element={<NotFound />} />

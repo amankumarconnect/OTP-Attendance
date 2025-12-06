@@ -76,13 +76,13 @@ export const getDay = async (req, res) => {
 };
 
 // Controller to update Code for a specific class
-export const updateCode = async (req, res) => {
+export const takeAttendance = async (req, res) => {
   try {
-    const { classID } = req.params;
+    const { classID, date } = req.params;
     const { code } = req.body;
     const classData = await Class.findByIdAndUpdate(
       classID,
-      { code },
+      { code, attendanceDate: date },
       { new: true },
     );
     console.log(code);

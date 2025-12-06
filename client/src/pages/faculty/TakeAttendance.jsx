@@ -1,23 +1,27 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 
 const TakeAttendance = () => {
   const [code, setCode] = useState(null);
   const [timeLeft, setTimeLeft] = useState(0);
   const [codeStatus, setCodeStatus] = useState("");
-  const { classID } = useParams();
+  const { classID, date } = useParams();
+  const navigate = useNavigate();
   const [isGenerating, setIsGenerating] = useState(false);
 
-  const updateCode = async (newCode) => {
+  const takeAttendance = async (newCode) => {
     setCode(newCode);
 
-    const response = await fetch(`/api/faculty/update-code/${classID}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
+    const response = await fetch(
+      `/api/faculty/take-attendance/${classID}/${date}`,
+      {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ code: newCode }),
       },
-      body: JSON.stringify({ code: newCode }),
-    });
+    );
     if (response.ok) {
       setCodeStatus("Code updated successfully!");
     } else {
@@ -31,11 +35,11 @@ const TakeAttendance = () => {
     let timerInterval;
 
     if (isGenerating) {
-      updateCode(Math.floor(1000 + Math.random() * 9000));
+      takeAttendance(Math.floor(1000 + Math.random() * 9000));
       setTimeLeft(15);
 
       generateInterval = setInterval(
-        () => updateCode(Math.floor(1000 + Math.random() * 9000)),
+        () => takeAttendance(Math.floor(1000 + Math.random() * 9000)),
         15000,
       );
       timerInterval = setInterval(() => {
@@ -48,10 +52,10 @@ const TakeAttendance = () => {
       clearInterval(generateInterval);
       clearInterval(timerInterval);
       if (isGenerating) {
-        updateCode(null);
+        takeAttendance(null);
       }
     };
-  }, [isGenerating]);
+  }, [isGenerating, date, classID]);
 
   // Simple Handlers
   const startGenerating = () => setIsGenerating(true);
@@ -64,12 +68,20 @@ const TakeAttendance = () => {
   };
 
   return (
-    <div className="m-8 flex flex-col gap-6 items-center">
+    <div className="m-8 flex flex-col gap-4 items-center">
+      <input
+        type="date"
+        className="input input-bordered w-full max-w-xs"
+        value={date}
+        onChange={(e) =>
+          navigate(`/take-attendance/${classID}/${e.target.value}`)
+        }
+      />
       <div className="flex flex-col items-center">
         {isGenerating ? (
-          <p className="text-[35vmin] font-medium">{code}</p>
+          <p className="text-[33vmin] font-medium">{code}</p>
         ) : (
-          <p className="text-[35vmin] text-gray-500">XXXX</p>
+          <p className="text-[33vmin] text-gray-500">XXXX</p>
         )}
         <div className="divider">Code</div>
         <p className={!isGenerating ? "invisible" : "text-3xl"}>

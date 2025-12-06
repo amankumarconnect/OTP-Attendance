@@ -4,7 +4,8 @@ import Class from "../models/class.model.js";
 
 export const updateAttendance = async (req, res) => {
   try {
-    const { classID, date, studentID, code } = req.body;
+    const { classID } = req.params;
+    const { studentID, code } = req.body;
 
     const classData = await Class.findById(classID);
     if (!classData) {
@@ -16,10 +17,10 @@ export const updateAttendance = async (req, res) => {
     }
 
     let attendanceForDate = classData.attendance.find(
-      (att) => att.date === date,
+      (att) => att.date === classData.attendanceDate,
     );
     if (!attendanceForDate) {
-      classData.attendance.push({ date: date, students: [] });
+      classData.attendance.push({ date: classData.attendanceDate, presentStudents: [] });
       // Get the newly added attendance record
       attendanceForDate = classData.attendance[classData.attendance.length - 1];
     }
