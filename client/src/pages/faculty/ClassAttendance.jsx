@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
+import DateSelect from "../../components/faculty/DateSelect.jsx";
 import AttendanceTable from "../../components/faculty/AttendanceTable.jsx";
+import TakeButton from "../../components/faculty/TakeButton.jsx";
 
 const Day = () => {
   const { classID, date } = useParams();
@@ -59,24 +61,35 @@ const Day = () => {
 
   return (
     <div className="m-8">
-      <h1 className="text-4xl font-bold">{date}</h1>
-      <h2 className="text-2xl text-gray-500">{classTitle}</h2>
-      <div className="flex gap-4 my-4">
-        <button
-          className="btn btn-success tooltip tooltip-bottom"
-          onClick={() => copyToClipboard(presentStudents)}
-          data-tip="Click to copy"
-        >
-          Present: {presentStudents.length}
-        </button>
-        <button
-          className="btn btn-error"
-          onClick={() => copyToClipboard(absentStudents)}
-        >
-          Absent: {absentStudents.length}
-        </button>
+      <h1 className="text-4xl font-bold text-gray-500 mb-2">{classTitle}</h1>
+      <div className="flex justify-between">
+        <DateSelect classID={classID} date={date} />
+        <TakeButton classID={classID} date={date} />
       </div>
-      <AttendanceTable attendance={attendance} changeStatus={changeStatus} />
+      {presentStudents.length !== 0 && (
+        <div>
+          <div className="flex gap-4 my-4">
+            <button
+              className="btn btn-success tooltip tooltip-bottom"
+              onClick={() => copyToClipboard(presentStudents)}
+              data-tip="Click to copy"
+            >
+              Present: {presentStudents.length}
+            </button>
+            <button
+              className="btn btn-error tooltip tooltip-bottom"
+              onClick={() => copyToClipboard(absentStudents)}
+              data-tip="Click to copy"
+            >
+              Absent: {absentStudents.length}
+            </button>
+          </div>
+          <AttendanceTable
+            attendance={attendance}
+            changeStatus={changeStatus}
+          />
+        </div>
+      )}
     </div>
   );
 };

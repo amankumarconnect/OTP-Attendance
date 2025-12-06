@@ -33,7 +33,7 @@ const Classes = () => {
         ))}
       </div>
       <Link to={"/create-class"}>
-        <button className="btn btn-circle btn-soft btn-accent btn-xl toast">
+        <button className="btn btn-circle btn-soft btn-accent btn-xl toast tooltip tooltip-left" data-tip="Create New Class">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"

@@ -40,6 +40,9 @@
 
 1.
 
+<!-- Optimizations -->
+1. (Maybe) Date in a class is created when teacher clicks start generating - not when a student is present
+
 <!-- Up-Next -->
 
-1. 
+1. When a date's attendance is not available, show it in date selector disabled

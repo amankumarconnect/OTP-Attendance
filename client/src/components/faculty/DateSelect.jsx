@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router";
 
-const DateSelect = ({ classID }) => {
+const DateSelect = ({ classID, date }) => {
   const [dates, setDates] = useState([]);
   const navigate = useNavigate();
 
@@ -17,13 +17,13 @@ const DateSelect = ({ classID }) => {
   }, [classID]);
   return (
     <select
-      defaultValue="Choose Date"
-      className="select select-primary"
+      value={date}
+      className="select"
       onChange={(e) =>
         navigate(`/class-attendance/${classID}/${e.target.value}`)
       }
     >
-      <option disabled={true}>Choose Date</option>
+      {!dates.includes(date) && <option disabled={true}>{date}</option>}
       {dates.map((date) => (
         <option key={date} value={date}>
           {date}
