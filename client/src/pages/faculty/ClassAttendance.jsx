@@ -66,30 +66,25 @@ const Day = () => {
         <DateSelect classID={classID} date={date} />
         <TakeButton classID={classID} date={date} />
       </div>
-      {presentStudents.length !== 0 && (
-        <div>
-          <div className="flex gap-4 my-4">
-            <button
-              className="btn btn-success tooltip tooltip-bottom"
-              onClick={() => copyToClipboard(presentStudents)}
-              data-tip="Click to copy"
-            >
-              Present: {presentStudents.length}
-            </button>
-            <button
-              className="btn btn-error tooltip tooltip-bottom"
-              onClick={() => copyToClipboard(absentStudents)}
-              data-tip="Click to copy"
-            >
-              Absent: {absentStudents.length}
-            </button>
-          </div>
-          <AttendanceTable
-            attendance={attendance}
-            changeStatus={changeStatus}
-          />
+      <div>
+        <div className="flex gap-4 my-4">
+          <button
+            className="btn btn-success tooltip tooltip-bottom"
+            onClick={() => copyToClipboard(presentStudents)}
+            data-tip="Click to copy"
+          >
+            Present: {presentStudents.length}
+          </button>
+          <button
+            className="btn btn-error tooltip tooltip-bottom"
+            onClick={() => copyToClipboard(absentStudents)}
+            data-tip="Click to copy"
+          >
+            Absent: {absentStudents.length}
+          </button>
         </div>
-      )}
+        <AttendanceTable attendance={attendance} changeStatus={changeStatus} />
+      </div>
     </div>
   );
 };

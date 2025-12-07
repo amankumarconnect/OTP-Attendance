@@ -125,3 +125,57 @@ export const changeStatus = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+// Controller to get students of a class
+export const getStudents = async (req, res) => {
+  try {
+    const { classID } = req.params;
+    const classData = await Class.findById(classID);
+    if (!classData) {
+      return res.status(404).json({ message: "Class not found" });
+    }
+    res.status(200).json(classData.students);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Controller to add a student to a class
+export const addStudent = async (req, res) => {
+  try {
+    const { classID } = req.params;
+    const { studentID } = req.body;
+    const classData = await Class.findById(classID);
+    if (!classData) {
+      return res.status(404).json({ message: "Class not found" });
+    }
+    // check if student already exists
+    if (!classData.students.includes(studentID)) {
+      classData.students.push(studentID);
+      await classData.save();
+    }
+    res.status(200).json({ message: "Student added successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+// Controller to delete a student from a class
+export const deleteStudent = async (req, res) => {
+  try {
+    const { classID, studentID } = req.params;
+    const classData = await Class.findById(classID);
+    if (!classData) {
+      return res.status(404).json({ message: "Class not found" });
+    }
+    // remove student from students array
+    classData.students = classData.students.filter((id) => id !== studentID);
+    await classData.save();
+    res.status(200).json({ message: "Student deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: error.message });
+  }
+};

@@ -7,6 +7,7 @@ import CreateClass from "./pages/faculty/CreateClass.jsx";
 import FacultyHome from "./pages/faculty/FacultyHome.jsx";
 import ClassAttendance from "./pages/faculty/ClassAttendance.jsx";
 import TakeAttendance from "./pages/faculty/TakeAttendance.jsx";
+import ClassOptions from "./pages/faculty/ClassOptions.jsx";
 import MarkAttendance from "./pages/student/MarkAttendance.jsx";
 import StudentHome from "./pages/student/StudentHome.jsx";
 import MyAttendance from "./pages/student/MyAttendance.jsx";
@@ -24,6 +25,7 @@ function App() {
           <Route path="/" element={<Layout />}>
             <Route index element={<FacultyHome />} />
             <Route path="/create-class" element={<CreateClass />} />
+            <Route path="/class/:classID" element={<ClassOptions />} />
             <Route
               path="/class-attendance/:classID/:date"
               element={<ClassAttendance />}
