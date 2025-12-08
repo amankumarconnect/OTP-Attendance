@@ -1,7 +1,9 @@
 <!-- Features -->
 1. present csv, absent csv (send to email)
-2. edit title/delete/hide class
-3. add/remove students from class
+2. edit class title
+3. hide class - only for self
+4. delete class
+5. add/remove students from class
 
 1. NavBar/sidebar - Faculty (Logo, Home, new class), Students (Logo, Home)
 1. Responsive UI/UX
@@ -20,7 +22,7 @@
 1. Buy Domain and deploy
 
 <!-- Bugs -->
-1. What if a faculty clicks on a link of other faculty's class and take attendance?
+1. What if a faculty clicks on a link of other faculty's class and take attendance? Or a student sends data to a faculty route using postman?
 2. If a student is not part of a class, can he still mark present in that?
 
 <!-- Challenges -->

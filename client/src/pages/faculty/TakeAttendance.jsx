@@ -15,7 +15,7 @@ const TakeAttendance = () => {
     const response = await fetch(
       `/api/faculty/take-attendance/${classID}/${date}`,
       {
-        method: "PUT",
+        method: "PATCH",
         headers: {
           "Content-Type": "application/json",
         },

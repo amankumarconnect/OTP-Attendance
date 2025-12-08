@@ -42,7 +42,7 @@ const Day = () => {
     try {
       await fetch(
         `/api/faculty/change-status/${classID}/${date}/${studentID}`,
-        { method: "PUT" },
+        { method: "PATCH" },
       );
       fetchAttendance();
     } catch (error) {

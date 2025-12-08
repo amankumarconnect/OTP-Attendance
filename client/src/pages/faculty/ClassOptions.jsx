@@ -64,13 +64,39 @@ const ClassOptions = () => {
     }
   };
 
+  const editClassTitle = async (newTitle) => {
+    try {
+      const response = await fetch(`/api/edit-class-title/${classID}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ newTitle }),
+      });
+      setClassTitle(newTitle);
+    } catch (error) {
+      console.error("Error editing class title:", error);
+    }
+  };
+
+  const hideClass = async () => {
+    try {
+      const response = await fetch(`/api/hide-class/${classID}`, {
+        method: "PATCH",
+      });
+      fetchStudents();
+    } catch (error) {
+      console.error("Error hiding class:", error);
+    }
+  };
+
   return (
     <div>
       <div className="flex flex-col gap-4">
         <h1 className="text-4xl font-bold">{classTitle}</h1>
         <div className="flex gap-4">
           <button className="btn btn-primary">Edit Class Title</button>
-          <button className="btn btn-warning">Hide Class</button>
+          <button className="btn btn-warning" onClick={hideClass}>Hide Class</button>
           <button className="btn btn-error">Delete Class</button>
         </div>
       </div>

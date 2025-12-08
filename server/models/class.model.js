@@ -40,6 +40,11 @@ const classSchema = mongoose.Schema(
       type: String,
       required: false,
     },
+    hidden: {
+      type: Boolean,
+      required: true,
+      default: false,
+    },
   },
   {
     timestamps: true,
