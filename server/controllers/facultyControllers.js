@@ -202,3 +202,20 @@ export const updateClassTitle = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+
+export const deleteClass = async (req, res) => {
+  try {
+    const { classID } = req.params;
+
+    const classData = await Class.findByIdAndDelete(classID);
+
+    if (!classData) {
+      return res.status(404).json({ message: "Class not found" });
+    }
+
+    res.status(200).json({ message: "Class deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: error.message });
+  }
+};

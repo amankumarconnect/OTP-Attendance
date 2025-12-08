@@ -1,26 +1,23 @@
 <!-- Features -->
 
 1. present csv, absent csv (send to email)
-2. edit class title
-3. hide class - only for self
-4. delete class
-5. add/remove students from class
+2. hide class - only for self
 
-6. NavBar/sidebar - Faculty (Logo, Home, new class), Students (Logo, Home)
-7. Responsive UI/UX
-8. show the status alert (for errors, success)
-9. scroll bar in date select
-10. Show attendance percent and other useful perks to students and faculty
+3. Responsive UI
+4. UX
+5. show the status alert (for errors, success)
+6. scroll bar in date select
+7. Show attendance percent and other useful perks to students and faculty
 
-11. Restrict login to @vitbhopal.ac.in emails only
-12. One tap/automatic login for @vitbhopal.ac.in emails
+8. Restrict login to @vitbhopal.ac.in emails only
+9. One tap/automatic login for @vitbhopal.ac.in emails
 
-13. Student IDs - Registration Number model, create-class OR associate Name of students with RegNO
+10. Student IDs - Registration Number model, create-class OR associate Name of students with RegNO
 
-14. Not VIT secific - A general attendance app
+11. Not VIT secific - A general attendance app
 
-15. Optimization
-16. Buy Domain and deploy
+12. Optimization
+13. Buy Domain and deploy
 
 <!-- Bugs -->
 

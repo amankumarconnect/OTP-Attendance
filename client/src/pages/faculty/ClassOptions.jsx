@@ -1,10 +1,12 @@
 import { useState, useEffect } from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import StudentsTable from "../../components/faculty/StudentsTable";
 import EditTitleButton from "../../components/faculty/EditTitleButton";
+import DeleteClassButton from "../../components/faculty/deleteClassButton.jsx";
 
 const ClassOptions = () => {
   const { classID } = useParams();
+  const navigate = useNavigate();
   const [classTitle, setClassTitle] = useState("");
   const [students, setStudents] = useState([]);
   const [newStudentID, setNewStudentID] = useState("");
@@ -65,17 +67,6 @@ const ClassOptions = () => {
     }
   };
 
-  const hideClass = async () => {
-    try {
-      const response = await fetch(`/api/hide-class/${classID}`, {
-        method: "PATCH",
-      });
-      fetchStudents();
-    } catch (error) {
-      console.error("Error hiding class:", error);
-    }
-  };
-
   return (
     <div className="m-8">
       <div className="flex flex-col gap-4">
@@ -86,10 +77,8 @@ const ClassOptions = () => {
             classTitle={classTitle}
             setClassTitle={setClassTitle}
           />
-          <button className="btn btn-warning" onClick={hideClass}>
-            Hide Class
-          </button>
-          <button className="btn btn-error">Delete Class</button>
+          <button className="btn btn-warning">Hide Class</button>
+          <DeleteClassButton classID={classID} />
         </div>
       </div>
       <div className="mt-4 flex gap-4">

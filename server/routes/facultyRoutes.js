@@ -9,6 +9,7 @@ import {
   addStudent,
   deleteStudent,
   updateClassTitle,
+  deleteClass,
 } from "../controllers/facultyControllers.js";
 
 import express from "express";
@@ -24,5 +25,6 @@ router.get("/faculty/get-students/:classID", getStudents);
 router.post("/faculty/add-student/:classID", addStudent);
 router.delete("/faculty/delete-student/:classID/:studentID", deleteStudent);
 router.patch("/faculty/update-class-title/:classID", updateClassTitle);
+router.delete("/faculty/delete-class/:classID", deleteClass);
 
 export default router;

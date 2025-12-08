@@ -27,11 +27,11 @@ const EditTitleButton = ({ classID, classTitle, setClassTitle }) => {
       {/* You can open the modal using document.getElementById('ID').showModal() method */}
       <button
         className="btn"
-        onClick={() => document.getElementById("my_modal_3").showModal()}
+        onClick={() => document.getElementById("edit_title_modal").showModal()}
       >
         Edit Title
       </button>
-      <dialog id="my_modal_3" className="modal">
+      <dialog id="edit_title_modal" className="modal">
         <div className="modal-box">
           <form method="dialog">
             {/* if there is a button in form, it will close the modal */}
