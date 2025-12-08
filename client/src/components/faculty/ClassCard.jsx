@@ -7,7 +7,9 @@ const ClassCard = ({ classID, classTitle }) => {
   return (
     <div className="card w-full bg-neutral">
       <div className="card-body">
-        <Link className="card-title" to={`/class/${classID}`}>{classTitle}</Link>
+        <Link className="card-title" to={`/class/${classID}`}>
+          {classTitle}
+        </Link>
         <div className="card-actions">
           <TakeButton classID={classID} date={date} />
           <ViewButton classID={classID} date={date} />

@@ -96,7 +96,9 @@ const ClassOptions = () => {
         <h1 className="text-4xl font-bold">{classTitle}</h1>
         <div className="flex gap-4">
           <button className="btn btn-primary">Edit Class Title</button>
-          <button className="btn btn-warning" onClick={hideClass}>Hide Class</button>
+          <button className="btn btn-warning" onClick={hideClass}>
+            Hide Class
+          </button>
           <button className="btn btn-error">Delete Class</button>
         </div>
       </div>

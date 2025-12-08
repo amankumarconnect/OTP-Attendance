@@ -10,16 +10,19 @@ const MarkAttendance = () => {
 
   const updateAttendance = async (code) => {
     try {
-      const response = await fetch(`/api/student/update-attendance/${classID}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
+      const response = await fetch(
+        `/api/student/update-attendance/${classID}`,
+        {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            studentID,
+            code: code,
+          }),
         },
-        body: JSON.stringify({
-          studentID,
-          code: code,
-        }),
-      });
+      );
       if (response.ok) {
         setAttendanceStatus("Success");
       } else if (response.status === 400) {

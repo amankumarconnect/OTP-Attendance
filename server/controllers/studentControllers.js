@@ -20,7 +20,10 @@ export const updateAttendance = async (req, res) => {
       (att) => att.date === classData.attendanceDate,
     );
     if (!attendanceForDate) {
-      classData.attendance.push({ date: classData.attendanceDate, presentStudents: [] });
+      classData.attendance.push({
+        date: classData.attendanceDate,
+        presentStudents: [],
+      });
       // Get the newly added attendance record
       attendanceForDate = classData.attendance[classData.attendance.length - 1];
     }
