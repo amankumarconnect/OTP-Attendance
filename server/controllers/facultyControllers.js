@@ -1,3 +1,4 @@
+import e from "express";
 import Class from "../models/class.model.js";
 
 // Controller to create a new class
@@ -174,6 +175,28 @@ export const deleteStudent = async (req, res) => {
     classData.students = classData.students.filter((id) => id !== studentID);
     await classData.save();
     res.status(200).json({ message: "Student deleted successfully" });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: error.message });
+  }
+};
+
+export const updateClassTitle = async (req, res) => {
+  try {
+    const { classID } = req.params;
+    const { classTitle } = req.body;
+
+    const classData = await Class.findByIdAndUpdate(
+      classID,
+      { classTitle },
+      { new: true },
+    );
+
+    if (!classData) {
+      return res.status(404).json({ message: "Class not found" });
+    }
+
+    res.status(200).json({ message: "Class title updated successfully" });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: error.message });

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router";
 import StudentsTable from "../../components/faculty/StudentsTable";
+import EditTitleButton from "../../components/faculty/EditTitleButton";
 
 const ClassOptions = () => {
   const { classID } = useParams();
@@ -64,21 +65,6 @@ const ClassOptions = () => {
     }
   };
 
-  const editClassTitle = async (newTitle) => {
-    try {
-      const response = await fetch(`/api/edit-class-title/${classID}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ newTitle }),
-      });
-      setClassTitle(newTitle);
-    } catch (error) {
-      console.error("Error editing class title:", error);
-    }
-  };
-
   const hideClass = async () => {
     try {
       const response = await fetch(`/api/hide-class/${classID}`, {
@@ -91,11 +77,15 @@ const ClassOptions = () => {
   };
 
   return (
-    <div>
+    <div className="m-8">
       <div className="flex flex-col gap-4">
         <h1 className="text-4xl font-bold">{classTitle}</h1>
         <div className="flex gap-4">
-          <button className="btn btn-primary">Edit Class Title</button>
+          <EditTitleButton
+            classID={classID}
+            classTitle={classTitle}
+            setClassTitle={setClassTitle}
+          />
           <button className="btn btn-warning" onClick={hideClass}>
             Hide Class
           </button>
