@@ -4,46 +4,26 @@ import mongoose from "mongoose";
 
 const classSchema = mongoose.Schema(
   {
-    classTitle: {
+    title: {
       type: String,
       required: true,
     },
     facultyID: {
-      type: String,
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
       required: true,
     },
     students: [
       {
-        type: String,
-        required: true,
-      },
-    ],
-    attendance: [
-      {
-        date: {
-          type: String,
-          required: true,
-        },
-        presentStudents: [
-          {
-            type: String,
-            required: true,
-          },
-        ],
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User",
       },
     ],
     attendanceDate: {
-      type: String,
-      required: false,
+      type: Date,
     },
-    code: {
+    attendanceCode: {
       type: String,
-      required: false,
-    },
-    hidden: {
-      type: Boolean,
-      required: true,
-      default: false,
     },
   },
   {
