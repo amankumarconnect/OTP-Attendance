@@ -125,6 +125,10 @@ OTP-Attendance/
 └── README.md               # Project documentation
 ```
 
+## 🗺️ Roadmap
+
+Check out our [TODO.md](TODO.md) to see the planned features, known bugs, and future improvements.
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit a Pull Request.
