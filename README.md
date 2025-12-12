@@ -1,47 +1,134 @@
-<!-- Features -->
+# OTP Attendance System
 
-1. present csv, absent csv (send to email)
-2. hide class - only for self
+A MERN stack application designed to streamline the attendance process in educational institutions. This system allows faculty to create classes and take attendance using a secure OTP (One-Time Password) mechanism, while students can easily mark their attendance and view their records.
 
-3. Responsive UI
-4. UX
-5. show the status alert (for errors, success)
-6. scroll bar in date select
-7. Show attendance percent and other useful perks to students and faculty
+## Features
 
-8. Restrict login to @vitbhopal.ac.in emails only
-9. One tap/automatic login for @vitbhopal.ac.in emails
+### 👨‍🏫 Faculty
 
-10. Student IDs - Registration Number model, create-class OR associate Name of students with RegNO
+- **Create Classes:** Easily create new classes to manage attendance.
+- **Take Attendance:** Generate a unique, time-sensitive OTP for students to mark their attendance for a specific session.
+- **View Attendance:** Access detailed attendance records for each class, filtered by date.
+- **Class Management:** Edit class titles or delete classes as needed.
+- **Dashboard:** A centralized view of all created classes.
 
-11. Not VIT secific - A general attendance app
+### 👨‍🎓 Student
 
-12. Optimization
-13. Buy Domain and deploy
+- **Mark Attendance:** Enter the OTP provided by the faculty to mark presence for a class.
+- **View Attendance:** Check personal attendance history and percentage for enrolled classes.
+- **Dashboard:** View all classes the student is enrolled in.
 
-<!-- Bugs -->
+## 🛠️ Tech Stack
 
-1. What if a faculty clicks on a link of other faculty's class and take attendance? Or a student sends data to a faculty route using postman?
-2. If a student is not part of a class, can he still mark present in that?
+### Frontend
 
-<!-- Challenges -->
+- **React:** UI library for building interactive interfaces.
+- **Vite:** Fast build tool and development server.
+- **Tailwind CSS:** Utility-first CSS framework for styling.
+- **DaisyUI:** Component library for Tailwind CSS.
+- **React Router:** For client-side routing.
+- **Google OAuth:** For secure user authentication.
 
-1. Student call their friend (already marked present) who tell the code and they enter the code quickly.
+### Backend
 
-<!-- Possible Solutions -->
+- **Node.js & Express.js:** Server-side runtime and framework.
+- **MongoDB & Mongoose:** NoSQL database and object modeling.
+- **Google Auth Library:** For verifying Google OAuth tokens on the server.
+- **CORS:** Middleware to enable Cross-Origin Resource Sharing.
 
-7. Stay logged in only at one place at a time
-8. Can not login to another place for 5 days after logging in to one place
+## 📋 Prerequisites
 
-<!-- Doubts -->
+Before running the project, ensure you have the following installed:
 
-1. what if we delete a student from a class but not from previous attendance records?
+- [Node.js](https://nodejs.org/) (v14 or higher)
+- [MongoDB](https://www.mongodb.com/) (Local or Atlas URI)
+- A Google Cloud Console project with OAuth 2.0 credentials (Client ID).
 
-<!-- Optimizations -->
+## 🚀 Installation & Setup
 
-1. (Maybe) Date in a class is created when teacher clicks start generating - not when a student is present
-2. Replace select with dropdown
+### 1. Clone the Repository
 
-<!-- Up-Next -->
+```bash
+git clone <repository-url>
+cd OTP-Attendance
+```
 
-1. feature 2
+### 2. Backend Setup
+
+Navigate to the server directory and install dependencies:
+
+```bash
+cd server
+npm install
+```
+
+Create a `.env` file in the `server` directory and add your MongoDB connection string:
+
+```env
+MONGO_URI=your_mongodb_connection_string
+```
+
+### 3. Frontend Setup
+
+Navigate to the client directory and install dependencies:
+
+```bash
+cd ../client
+npm install
+```
+
+Create a `.env` file in the `client` directory and add your Google Client ID:
+
+```env
+VITE_GOOGLE_CLIENT_ID=your_google_client_id
+```
+
+## 🏃‍♂️ Running the Application
+
+### Start the Backend Server
+
+In the `server` directory:
+
+```bash
+npm run dev
+```
+
+The server will start on `http://localhost:3000`.
+
+### Start the Frontend Client
+
+In the `client` directory:
+
+```bash
+npm run dev
+```
+
+The client will start on `http://localhost:5173` (or the port shown in the terminal).
+
+## 📂 Project Structure
+
+```
+OTP-Attendance/
+├── client/                 # Frontend React application
+│   ├── src/
+│   │   ├── components/     # Reusable UI components
+│   │   ├── context/        # React Context (Auth)
+│   │   ├── pages/          # Page components (Login, Home, etc.)
+│   │   └── ...
+│   └── ...
+├── server/                 # Backend Express application
+│   ├── config/             # Database configuration
+│   ├── controllers/        # Request handlers
+│   ├── models/             # Mongoose models (User, Class, Attendance)
+│   ├── routes/             # API routes
+│   └── ...
+└── README.md               # Project documentation
+```
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## 📄 License
+
+This project is licensed under the ISC License.
