@@ -49,7 +49,7 @@ Before running the project, ensure you have the following installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/amankumarconnect/OTP-Attendance
 cd OTP-Attendance
 ```
 
@@ -124,10 +124,6 @@ OTP-Attendance/
 │   └── ...
 └── README.md               # Project documentation
 ```
-
-## 🗺️ Roadmap
-
-Check out our [TODO.md](TODO.md) to see the planned features, known bugs, and future improvements.
 
 ## 🤝 Contributing
 
