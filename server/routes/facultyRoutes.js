@@ -1,7 +1,7 @@
 import {
   createClass,
   getClasses,
-  getDates,
+  getClass,
   getDay,
   takeAttendance,
   changeStatus,
@@ -17,7 +17,7 @@ const router = express.Router();
 
 router.post("/faculty/create-class", createClass);
 router.get("/faculty/get-classes/:facultyID", getClasses);
-router.get("/faculty/class/:classID", getDates);
+router.get("/faculty/class/:classID", getClass);
 router.get("/faculty/get-day/:classID/:date", getDay);
 router.patch("/faculty/take-attendance/:classID/:date", takeAttendance);
 router.patch("/faculty/change-status/:classID/:date/:studentID", changeStatus);
