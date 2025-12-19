@@ -1,4 +1,5 @@
 import { OAuth2Client } from "google-auth-library";
+import User from "../models/user.model.js";
 
 // Initialize the Google Client
 const oAuth2Client = new OAuth2Client(
@@ -25,6 +26,8 @@ export const exchangeCodeForTokens = async (req, res) => {
 
     const isStudent = /\d{2}[a-zA-Z]{3}\d{5}/.test(userID);
     const role = isStudent ? "student" : "faculty";
+    const userData = new User({ role, userID });
+    await userData.save();
 
     // Ideally, save the refresh_token to your database associated with the user
     // Send the tokens back to the client
