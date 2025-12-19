@@ -8,7 +8,7 @@ export const getClassTitle = async (req, res) => {
     if (!classData) {
       return res.status(404).json({ message: "Class not found" });
     }
-    res.json({ classTitle: classData.classTitle });
+    res.json({ classTitle: classData.title });
   } catch (error) {
     res.status(500).json({ message: "Server error" });
   }
