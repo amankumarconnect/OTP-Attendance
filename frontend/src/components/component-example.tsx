@@ -1,6 +1,7 @@
 import * as React from "react";
 
 import { Example, ExampleWrapper } from "@/components/example";
+import { ModeToggle } from "./mode-toggle";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -96,6 +97,7 @@ export function ComponentExample() {
     <ExampleWrapper>
       <CardExample />
       <FormExample />
+      <ModeToggle />
     </ExampleWrapper>
   );
 }
