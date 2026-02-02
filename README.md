@@ -20,3 +20,11 @@ Husky
 Prettier
 lint-staged
 Node.js
+Mongoose
+Express
+Mongodb
+zod
+redux/zustand
+websockets/socket.io
+JWT
+bcryptjs
