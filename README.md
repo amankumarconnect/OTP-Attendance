@@ -8,8 +8,9 @@ bun install
 
 ### Tech Stack
 
+Monorepo
 TypeScript
-Bun
+Bun, Bun workspace
 Vite
 React
 React Router
