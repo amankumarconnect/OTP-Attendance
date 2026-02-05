@@ -1,3 +1,10 @@
+import { LogoutButton } from "@/components/logout-button";
+
 export function FacultyHome() {
-  return <div>Faculty Home Page</div>;
+  return (
+    <div>
+      <h1>Faculty Home Page</h1>
+      <LogoutButton />
+    </div>
+  );
 }

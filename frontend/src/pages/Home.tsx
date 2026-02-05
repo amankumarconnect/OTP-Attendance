@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Link } from "react-router";
 import { useAuth } from "@/context/AuthContext";
 import type { User } from "@/context/AuthContext";
+import { LogoutButton } from "@/components/logout-button";
 
 export function Home() {
   const { user } = useAuth();
@@ -13,7 +14,12 @@ export function Home() {
 }
 
 function LoggedIn({ user }: { user: User }) {
-  return <div>Welcome {user.name}</div>;
+  return (
+    <div className="flex flex-col items-center gap-4">
+      <div>Welcome {user.name}</div>
+      <LogoutButton />
+    </div>
+  );
 }
 
 function LoggedOut() {
