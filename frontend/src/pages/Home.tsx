@@ -1,19 +1,19 @@
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router";
 import { useAuth } from "@/context/AuthContext";
+import type { User } from "@/context/AuthContext";
 
 export function Home() {
-  const authContext = useAuth();
-  const isAuthenticated = authContext?.isAuthenticated;
+  const { user } = useAuth();
   return (
     <div className="flex w-full justify-center min-h-svh items-center">
-      {isAuthenticated ? <LoggedIn /> : <LoggedOut />}
+      {user ? <LoggedIn user={user} /> : <LoggedOut />}
     </div>
   );
 }
 
-function LoggedIn() {
-  return <div>Welcome dear</div>;
+function LoggedIn({ user }: { user: User }) {
+  return <div>Welcome {user.name}</div>;
 }
 
 function LoggedOut() {

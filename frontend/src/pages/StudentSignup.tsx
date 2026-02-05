@@ -4,7 +4,7 @@ export function StudentSignup() {
   return (
     <div className="bg-muted flex min-h-svh flex-col items-center justify-center gap-6 p-6 md:p-10">
       <div className="w-full max-w-sm">
-        <SignupForm role="Student" />
+        <SignupForm role="student" />
       </div>
     </div>
   );
