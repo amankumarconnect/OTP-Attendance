@@ -6,6 +6,12 @@
 bun install
 ```
 
+### Run the App
+
+```bash
+bun run dev
+```
+
 ### Tech Stack
 
 Monorepo

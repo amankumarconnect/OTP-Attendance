@@ -9,6 +9,7 @@
   ],
   "devDependencies": {
     "@types/bun": "latest",
+    "concurrently": "^9.2.1",
     "husky": "^9.1.7",
     "lint-staged": "^16.2.7",
     "prettier": "3.8.1"
@@ -20,6 +21,9 @@
     "**/*": "prettier --write --ignore-unknown"
   },
   "scripts": {
-    "prepare": "husky"
+    "prepare": "husky",
+    "backend": "bun --cwd ./backend dev",
+    "frontend": "bun --cwd ./frontend dev",
+    "dev": "concurrently \"bun run backend\" \"bun run frontend\""
   }
 }
